@@ -1,0 +1,12 @@
+[ZONE FDL:HTMLHEAD]
+
+<div style="text-align:center">
+<h1 >[ZOO_NAME]</h1>
+
+<img src="[IMG:accueil.jpg]"><br/>
+<a style="font-size:300%" href="?app=ZOO&action=ONEFAM_ROOT">
+[TEXT:Entrance]</a>
+<a  target⁼"colors" href="?app=ZOO&action=ZOO_COLOR">
+[TEXT:Colors]</a>
+</div>
+[ZONE FDL:HTMLFOOT]

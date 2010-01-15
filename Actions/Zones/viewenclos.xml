@@ -1,0 +1,14 @@
+<table width="100%">
+[ZONE FDL:VIEWFRAME?frameid=en_identification]
+[ZONE FDL:VIEWFRAME?frameid=en_localisation]
+
+<tr><td>
+<fieldset><legend>photo</legend>
+[BLOCK PHOTO]
+[ZONE ZOO:APHOTO?id=[anid]]
+[ENDBLOCK PHOTO]
+</fieldset>
+</td></tr>
+
+</table>
+ 

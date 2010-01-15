@@ -1,0 +1,25 @@
+<html>
+<head><title>Colors</title>
+</head>
+<body>
+<H1>Color Table</H1>
+<form 
+      name="fviewidoc"style="display:inline"
+      method="POST" ENCTYPE="multipart/form-data"
+      action="[CORE_STANDURL]&app=ZOO&action=ZOO_COLOR"
+       >
+[TEXT:Quality] : <input value="[quality]" type="text" size="3" name="quality">
+[TEXT:Red] <input value="[red]"  type="text" size="3" name="red">
+<input type="submit">
+</form>
+
+<table cellspacing="0" cellpadding="0">
+[BLOCK ROW]
+<tr>
+[BLOCK [cells]]<td style="height:8px;width:8px;background-color:[color]"></td>[ENDBLOCK [cells]]
+</tr>
+[ENDBLOCK ROW]
+</table>
+
+</body>
+</html>

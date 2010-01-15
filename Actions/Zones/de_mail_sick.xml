@@ -1,0 +1,38 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<HTML>
+<head>
+<BASE href="[CORE_ABSURL]">
+<style type="text/css">
+  .otto { 
+          border-width : thin;
+          background-color : ;
+          padding : 3pt;         
+          border-style: outset;
+	  text-align: justify;
+         }
+   P {color:[CORE_TEXTFGCOLOR]}
+   A:link, A:visited {text-decoration:none;color:black}
+   A:hover {background-color:[CORE_BGCOLORALTERN]}
+</style>
+</head>
+<BODY >
+<div class="otto" >
+<P>
+Bonjour ,</P>
+
+<P><A HREF="[CORE_PUBURL]/[CORE_STANDURL]&app=FDL&action=FDL_CARD&latest=Y&id=[ID]"><B>[TITLE]</B></A> est malade </P>
+<P>Voir son carnet de <A HREF="[CORE_PUBURL]/[CORE_STANDURL]&app=FDL&action=FDL_CARD&latest=Y&id=[idcarnet]"><B>Santé</B></A></P>
+
+<div style="width:250px;height:80px;border:inset thin;background-color:white;color:black">
+<img  align="left" style="position:absolute;z-index:1" src="[CORE_LOGOCLIENT]">
+<div style="font-family:arial;font-size:10pt;position:relative;z-index:2;margin:0px 0px 0px 45px;">
+<B style="line-height:30px">[SOCIETY_NAME]</B><BR>
+Service Administration
+<BR>
+Tél : [SOCIETY_PHONE]
+</div>
+</div>
+
+</div>
+</BODY>
+</HTML>

@@ -1,0 +1,13 @@
+<html>
+<head></head>
+<body>
+
+<br>
+<p>Le v&eacute;t&eacute;rinaire est <b><i>[us_fname]</i> [us_lname] </b></p>
+<p>[an_nom] a &eacute;t&eacute; malade le [dateveto]<br><i>[v_desc]</i></p>
+
+
+</body>
+</html>
+
+

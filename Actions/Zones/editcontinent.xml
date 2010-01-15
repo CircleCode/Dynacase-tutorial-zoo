@@ -1,0 +1,61 @@
+
+
+<script>
+function checkContinent(th, c) {
+  var inp=document.getElementById('es_continent');
+  if (inp) {
+    var i;
+    for (i=0;i<inp.options.length;i++) {
+      if (inp.options[i].value==c) {
+	if (inp.options[i].selected)   th.parentNode.className='';
+	else th.parentNode.className='selected';
+	inp.options[i].selected=(!inp.options[i].selected);
+      }
+    }    
+  }  
+  return false;
+ }
+function initMap() {
+  var inp=document.getElementById('es_continent');
+  if (inp) {
+    var i,m;
+
+    for (i=0;i<inp.options.length;i++) {
+      if (inp.options[i].selected) {
+	m=document.getElementById('map'+inp.options[i].value);
+	if (m) m.parentNode.className='selected';
+	else alert('map'+inp.options[i].value);
+      }
+    }    
+  }  
+  return false;
+}
+addEvent(window,'load',initMap);
+</script>
+<style>
+TABLE.continent TD {
+  padding:10px;
+}
+TABLE.continent TD INPUT{
+  width:200px;
+}
+TABLE.continent TD.selected {
+  background-color:[COLOR_B3];
+}
+</style>
+<div style="display:none">
+[V_ES_CONTINENT]</div>
+
+<table class="continent"><tr>
+<td><input type="image" id="mapNorthAmerica" src="[IMG:northamerica-map.jpg]" title="NorthAmerica" onclick="checkContinent(this,'NorthAmerica');return false"></td>
+<td><input type="image" id="mapEuropa" src="[IMG:europa-map.jpg]" title="Europe" onclick="checkContinent(this,'Europa');return false"></td>
+<td><input type="image" id="mapAsia" src="[IMG:asia-map.jpg]" title="Asie" onclick="checkContinent(this,'Asia');return false"></td></tr>
+<tr>
+<td><input type="image" id="mapSouthAmerica" src="[IMG:southamerica-map.jpg]" title="SouthAmerica" onclick="checkContinent(this,'SouthAmerica');return false"></td>
+<td><input type="image" id="mapAfrica" src="[IMG:africa-map.jpg]" title="Africa" onclick="checkContinent(this,'Africa');return false"></td>
+<td><input type="image" id="mapOceania" src="[IMG:oceania-map.jpg]" title="Oceania" onclick="checkContinent(this,'Oceania');return false"></td>
+</tr><tr>
+<td colspan="3" style="text-align:center"><input type="image" id="mapAntartica" src="[IMG:antartica-map.jpg]" title="Antartica" onclick="checkContinent(this,'Antartica');return false"></td>
+
+</tr></table>
+

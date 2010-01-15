@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<module name="freedom-zoo" disabled="no" version="@VERSION@" release="@RELEASE@">
+
+  <description>Template use to create freedom application.</description>
+
+  <requires>
+    <module name="freedom" version="2.14.1" comp="ge"/>
+  </requires>
+
+  <post-install>
+    <process command="programs/record_application @APPNAME@" />
+    <process command="programs/update_catalog" />
+    <process command="./wsh.php --api=freedom_import --file=./@APPNAME@/zoo-families.ods">
+			<label lang="en">Importing zoo families</label>
+		</process>
+    <process command="./wsh.php --api=freedom_import --file=./@APPNAME@/zoo-init.ods">
+			<label lang="en">Importing zoo somes species</label>
+		</process>
+    
+  </post-install>
+
+  <post-upgrade>
+    <process command="programs/pre_migration @APPNAME@" />
+    <process command="programs/record_application @APPNAME@" />
+    <process command="programs/post_migration @APPNAME@" />
+    <process command="programs/update_catalog" />  
+    <process command="./wsh.php --api=freedom_import --file=./@APPNAME@/zoo-families.ods">
+			<label lang="en">Update zoo families</label>
+		</process>
+  </post-upgrade>
+  
+  <changelog>
+    <version number="0.3.0" date="2010-01-13">
+      <change title="Zoo adaptation for freedom 2.14" />
+    </version>
+  </changelog>
+
+</module>

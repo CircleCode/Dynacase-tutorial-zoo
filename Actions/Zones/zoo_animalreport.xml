@@ -1,0 +1,4 @@
+<animals count="[anicount]">
+[BLOCK ANIMALS]<animal id="[id]" [IF an_tatouage]tatoo="[an_tatouage]"[ENDIF an_tatouage]><name>[an_nom]</name><species>[an_espece_title]</species><class>[an_classe_title]</class></animal>
+[ENDBLOCK ANIMALS]
+</animals>
