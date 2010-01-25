@@ -2,83 +2,92 @@
 include_once("FDL/Class.WDoc.php");
 
 
-# for i18n
-define ("i18n","i18n"); # N_("initialised") N_("transmited")  N_("accepted") N_("refused") N_("realised");
-define ("initialised", "initialised");
-define ("transmited", "transmited");
-define ("accepted", "accepted");
-define ("refused", "refused");
-define ("realised","realised");
 
-// transition name
-# for i18n
-define ("i18n","i18n"); #N_("Taccepted") N_("Ttransmited") N_("Tretry") N_("Trefused") N_("Trealised");
-define ("Taccepted", "Taccepted");
-define ("Ttransmited", "Ttransmited");
-define ("Trefused", "Trefused");
-define ("Tretry", "Tretry");
-define ("Trealised", "Trealised");
 
 Class WAdoption extends WDoc {
-  var $attrPrefix="WAD";
-  var $firstState=initialised;
+  public $attrPrefix="WAD";
+  const initialised="initialised"; # N_("initialised")
+  const transmited="transmited"; # N_("transmited")
+  const accepted="accepted"; # N_("accepted")
+  const refused="refused"; # N_("refused")
+  const realised="realised"; # N_("realised")
 
-  var $transitions=array( Ttransmited =>array("m1"=>"verifyvalidatormail",
-						"m2"=>"sendTransmitedMail"),
-			  Taccepted => array("m1"=>"",
-					     "m2"=>"sendAcceptMail"),
-			  Trefused =>array("m1"=>"notifyReject",
-					   "m2"=>"sendRefusedMail",
-					   "nr"=>true,
-					   "ask"=>array("wad_refus")),
-			  Trealised=>array("m1"=>"",
-					   "m2"=>"sendRealisedMail"),			  
-			  Tretry=>array("m1"=>"",
-					"m2"=>"sendRetryMail"));
+  const Ttransmited="Ttransmited"; # N_("Ttransmited")
+  const Taccepted="Taccepted"; # N_("Taccepted")
+  const Trefused="Trefused"; # N_("Trefused")
+  const Tretry="Tretry"; # N_("Tretry")
+  const Trealised="Trealised"; # N_("Trealised")
 
-  var $cycle=array(array("e1"=>initialised,
-			 "e2"=>transmited,
-			 "t"=>Ttransmited),	  
-		   array("e1"=>transmited,
-			 "e2"=>accepted,
-			 "t"=>Taccepted),
-		   array("e1"=>transmited,
-			 "e2"=>refused,
-			 "t"=>Trefused),		   
-		   array("e1"=>accepted,
-			 "e2"=>realised,
-			 "t"=>Trealised),
-		   array("e1"=>transmited,
-			 "e2"=>initialised,
-			 "t"=>Tretry) );
+  public $firstState=self::initialised;
 
-  public $stateactivity=array("initialised"=>"adoption writting",
-			      "transmited"=>"adoption verification"); # _("adoption writting") _("adoption verification")
+  public $transitions=array( self::Ttransmited =>array("m1"=>"verifyvalidatormail",
+						       "m2"=>"sendTransmitedMail"),
+			     self::Taccepted => array("m1"=>"",
+						      "m2"=>"sendAcceptMail"),
+			     self::Trefused =>array("m1"=>"notifyReject",
+						    "m2"=>"sendRefusedMail",
+						    "nr"=>true,
+						    "ask"=>array("wad_refus")),
+			     self::Trealised=>array("m1"=>"",
+						    "m2"=>"createAnimal"),			  
+			     self::Tretry =>array("m1"=>"",
+						  "m2"=>"sendRetryMail"));
 
-  
+  public $cycle=array(array("e1"=>self::initialised,
+			    "e2"=>self::transmited,
+			    "t"=>self::Ttransmited),	  
+		      array("e1"=>self::transmited,
+			    "e2"=>self::accepted,
+			    "t"=>self::Taccepted),
+		      array("e1"=>self::transmited,
+			    "e2"=>self::refused,
+			    "t"=>self::Trefused),		   
+		      array("e1"=>self::accepted,
+			    "e2"=>self::realised,
+			    "t"=>self::Trealised),
+		      array("e1"=>self::transmited,
+			    "e2"=>self::initialised,
+			    "t"=>self::Tretry) );
 
-  function verifyvalidatormail() {
+  public $stateactivity=array(self::initialised=>"adoption writting2",
+			      self::refused=>"adoption refused",
+			      self::transmited=>"adoption verification"); # _("adoption writting") _("adoption verification")
+
+
+
+  public function verifyvalidatormail() {
     $to = $this->doc->GetRValue("DE_IDVAL:US_MAIL");
     if (! $to) return sprintf(_("no mail for validator"));
+    return "";
   }
   /**
    *
    */
-  function sendTransmitedMail($newstate ) {
+  public function sendTransmitedMail($newstate ) {
+    $tkeys=array();
     if ($this->doc->getRValue("de_idespece:de_protegee")== "1") {
       $mt=new_doc($this->dbaccess,$this->getParamValue("WAD_MAILSECURE"));
     }  else {
-      $mt=new_doc($this->dbaccess,$this->getParamValue("WAD_MAILCURRENT"));
-      $this->sendTransmitedMail_detail($newstate);
+      // get others animals
+      include_once("FDL/Class.SearchDoc.php");
+      $s=new SearchDoc($this->dbaccess,"ANIMAL");
+      $s->addFilter(sprintf("an_espece ='%d'",$this->doc->getValue("de_idespece")));
+      $t=$s->search();
+      $tanimal=array();
+      foreach ($t as $animal) $tanimal[]=$this->getDocAnchor($t["id"],"mail");
+      $tkeys["animals"]=implode(", ",$tanimal);
+
+      $mt=new_doc($this->dbaccess,$this->getParamValue("WAD_MAILCURRENT"));      
+      // $this->sendTransmitedMail_detail($newstate);
     }
     if ($mt->isAlive()) {
-      $err=$mt->sendDocument($this->doc);
+      $err=$mt->sendDocument($this->doc,$tkeys);
     } else $err=_("no mail template");
-    return $err;    
+    return $err;
   }
 
-  
-  function sendTransmitedMail_detail($newstate ) {
+
+  public function sendTransmitedMail_detail($newstate ) {
     global $action;
     include_once("FDL/mailcard.php");
     $to = $this->doc->GetRValue("DE_IDVAL:US_MAIL");
@@ -88,11 +97,11 @@ Class WAdoption extends WDoc {
       $subject=sprintf(_("adoption %s to validate"), $this->doc->title);
       sendCard($action,
 	       $this->doc->id,
-	       $to,$cc,$subject,"ZOO:DE_MAIL_TRANSMITED:S",true); 
+	       $to,$cc,$subject,"ZOO:DE_MAIL_TRANSMITED:S",true);
     }
     return "";
   }
-  function sendRetryMail($newstate ) {
+  public function sendRetryMail($newstate ) {
     global $action;
     include_once("FDL/mailcard.php");
     $to = $this->doc->GetRValue("DE_IDREDAC:US_MAIL");
@@ -100,12 +109,12 @@ Class WAdoption extends WDoc {
     if ($to=="") return sprintf(_("no mail for redactor"));
     $subject=sprintf(_("adoption %s to modify"), $this->doc->title);
     sendCard($action,
-             $this->doc->id,
-             $to,$cc,$subject,"ZOO:DE_MAIL_RETRY:S",true);
+	     $this->doc->id,
+	     $to,$cc,$subject,"ZOO:DE_MAIL_RETRY:S",true);
     return "";
   }
 
-  function sendAcceptMail($newstate ) {
+  public function sendAcceptMail($newstate ) {
     global $action;
     include_once("FDL/mailcard.php");
     $to = $this->doc->GetRValue("DE_IDREALISED:US_MAIL");
@@ -113,33 +122,35 @@ Class WAdoption extends WDoc {
     $cc="";
     $subject=sprintf(_("adoption %s accepted"), $this->doc->title);
     sendCard($action,
-             $this->doc->id,
-             $to,$cc,$subject,"ZOO:DE_MAIL_ACCEPTED:S",true);
+	     $this->doc->id,
+	     $to,$cc,$subject,"ZOO:DE_MAIL_ACCEPTED:S",true);
     return "";
   }
 
-  function notifyReject() {
+  public function notifyReject() {
     $reason=$this->getValue("wad_refus");
 
     $this->doc->disableEditControl(); // no control here
     $this->doc->setValue("de_motif",$reason);
-    $this->doc->modify();;
+    $err=$this->doc->modify();
     $this->doc->enableEditControl();
+    return $err;
   }
 
-  function sendRefusedMail ($newstate ) {    
+  public function sendRefusedMail ($newstate ) {
     $to = $this->doc->GetRValue("DE_IDDEMAND:US_MAIL");
     $cc="";
 
-    $subject=sprintf(_("adoption %s refused"), $this->doc->title);  
+    $subject=sprintf(_("adoption %s refused"), $this->doc->title);
     SetHttpVar("redirect_app","FDL");
     SetHttpVar("redirect_act","EDITMAIL&mail_to=$to&mzone=ZOO:DE_MAIL_REFUSED:S&mail_subject=$subject&mid=".$this->doc->id);
-   
+         
     return "";
   }
 
 
-  function sendRealisedMail ($newstate ) {
+
+  public function sendRealisedMail ($newstate ) {
     global $action;
     include_once("FDL/mailcard.php");
     $to = $this->doc->GetRValue("DE_IDVAL:US_MAIL");
@@ -147,10 +158,28 @@ Class WAdoption extends WDoc {
     $cc="";
     $subject=sprintf(_("adoption %s realised"), $this->doc->title);
     sendCard($action,
-             $this->doc->id,
-             $to,$cc,$subject,"ZOO:DE_MAIL_REALISED:S",true);
+	     $this->doc->id,
+	     $to,$cc,$subject,"ZOO:DE_MAIL_REALISED:S",true);
     return "";
   }
 
+  public function createAnimal() {
+    $ani=createDoc($this->dbaccess,"ANIMAL");
+    if ($ani) {
+      $ani->setValue("an_nom",$this->doc->getValue("de_nom"));
+      $ani->setValue("an_espece",$this->doc->getValue("de_idespece"));
+      $ani->setValue("an_naissance",$this->doc->getValue("de_naissance"));
+      $ani->setValue("an_photo",$this->doc->getValue("de_photo"));
+      $err=$ani->add();
+      if ($err=="") {
+	$ani->postModify();
+	$ani->refresh(); 
+	SetHttpVar("redirect_app","FDL");
+	SetHttpVar("redirect_act","FDL_CARD&id=".$ani->id);
+      }
+      return $err;
+    }
+    return "";
+  }
 }
 ?>

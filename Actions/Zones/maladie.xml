@@ -1,6 +1,0 @@
-<u>[animal_name]</u><br/>
-<li>
-  <ul>[TEXT:taxo_species] : [espece]</ul>
-  <ul>[TEXT:taxo_class] : [classe]</ul>
-</li>
-a &eacute;t&eacute; malade [n] jours.

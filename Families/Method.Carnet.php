@@ -1,9 +1,9 @@
 <?php
 /**
- * Animal comportment
+ * Carnet comportment
  *
  * @author Anakeen 2010
- * @version $Id: Method.Carnet.php,v 1.1 2010-01-15 15:16:38 eric Exp $
+ * @version $Id: Method.Carnet.php,v 1.2 2010-01-25 13:45:18 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  */
@@ -14,7 +14,7 @@
  * @begin-method-ignore
  * this part will be deleted when construct document class until end-method-ignore
  */
-Class _ANIMAL extends Doc {
+Class _CARNET extends Doc {
 	/*
 	 * @end-method-ignore
 	 */
@@ -54,15 +54,28 @@ Class _ANIMAL extends Doc {
 	 */
 	function maladie($target="_self",$ulink=true,$abstract=false) {
 
-		$animal=new_doc($this->dbaccess,$this->getValue("ca_idnom"));
-		if ($animal->isAlive()) {
-			$this->lay->set("animal_name",$animal->getValue("an_nom"));
-			$this->lay->set("espece",$animal->getValue("an_espece"));
-			$this->lay->set("classe",$animal->getValue("an_classe"));
-			$this->lay->set("n",count($this->getTValue("ca_date")));
-		} else {
-			addWarningMsg(_("the animal document is not found"));
-		}
+	  $this->lay->set("today",$this->getDate());
+	  $animal=new_doc($this->dbaccess,$this->getValue("ca_idnom"));
+	  if ($animal->isAlive()) {
+	    $this->lay->set("animal_name",$animal->getValue("an_nom"));
+	    $this->lay->set("espece",$animal->getValue("an_espece_title"));
+	    $this->lay->set("classe",$animal->getValue("an_classe_title"));
+	    $this->lay->set("tatouage",$animal->getValue("an_tatouage"));
+	    $this->lay->set("n",count($this->getTValue("ca_date")));
+	  } else {
+	    addWarningMsg(_("zoo;the animal document is not found"));
+	  }
+
+	  $vetos=$this->getTValue("ca_idveterinaire");
+	    if (count($vetos) > 0) {
+	      $vetoid=$vetos[0];
+	      $veto=new_doc($this->dbaccess,$vetoid);
+	      if ($veto->isAlive()) {
+		$this->lay->set("vetoname",$veto->getValue("us_fname").' '.$veto->getValue("us_lname"));
+	      } else {
+		addWarningMsg(_("zoo:the veto document is not found"));
+	      }
+	    }
 	}
 	/**
 	 * @begin-method-ignore

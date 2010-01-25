@@ -1,6 +1,6 @@
 <?php
 // ---------------------------------------------------------------
-// $Id: ZOO.app,v 1.1 2010-01-15 15:15:38 eric Exp $
+// $Id: ZOO.app,v 1.2 2010-01-25 13:45:25 eric Exp $
 // $Source: /home/cvsroot/anakeen/addons/zoo3/ZOO.app,v $
 
 
@@ -31,6 +31,12 @@ $action_desc = array (
   array( 
    "name"		=>"ZOO_TEXTTICKETSALES",
    "short_name"		=>N_("text sum of sales"),
+   "script"             =>"zoo_ticketsales.php",
+   "function"           =>"zoo_ticketsales",
+   "acl"		=>"ZOO_MONEY"),
+  array( 
+   "name"		=>"ZOO_XMLTICKETSALES",
+   "short_name"		=>N_("xml sum of sales"),
    "script"             =>"zoo_ticketsales.php",
    "function"           =>"zoo_ticketsales",
    "acl"		=>"ZOO_MONEY"),

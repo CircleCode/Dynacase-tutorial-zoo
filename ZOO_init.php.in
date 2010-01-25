@@ -1,6 +1,6 @@
 <?php
 // ---------------------------------------------------------------
-// $Id: ZOO_init.php.in,v 1.1 2010-01-15 15:15:38 eric Exp $
+// $Id: ZOO_init.php.in,v 1.2 2010-01-25 13:45:25 eric Exp $
 // $Source: /home/cvsroot/anakeen/addons/zoo3/ZOO_init.php.in,v $
 // ---------------------------------------------------------------
 
@@ -13,6 +13,7 @@ $app_const= array(
 		  "ONEFAM_MIDS"=>"ANIMAL,ENCLOS,ESPECE,ZOO:CLASSE,CARNETSANTE,ENTREE,DEMANDEADOPTION",
 		  "ZOO_NAME"    =>array("val"=>"Zoo Land",
 					"descr"=>N_("Name of the zoo"),
+					"global"=>"N",
 					"user"=>"N"));
 
 ?>

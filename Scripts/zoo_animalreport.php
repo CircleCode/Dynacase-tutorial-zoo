@@ -4,7 +4,7 @@
  * Count Animal by Classe
  *
  * @author Anakeen 2008
- * @version $Id: zoo_animalreport.php,v 1.1 2010-01-15 15:19:40 eric Exp $
+ * @version $Id: zoo_animalreport.php,v 1.2 2010-01-25 13:45:25 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 
@@ -47,9 +47,7 @@ $s=new SearchDoc($dbaccess,"ANIMAL");
 $s->addFilter("an_classe='".$docclass->id."'");
 $tdoc=$s->search();
 
-
 $action->lay = new Layout(getLayoutFile("ZOO","zoo_animalreport.xml"), $action);
-$action->lay->setEncoding("utf-8");
 $action->lay->setBlockData("ANIMALS",$tdoc);
 $action->lay->set("anicount",count($tdoc));
 print $action->lay->gen();

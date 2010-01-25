@@ -24,7 +24,7 @@
     <process command="programs/record_application @APPNAME@" />
     <process command="programs/post_migration @APPNAME@" />
     <process command="programs/update_catalog" />  
-    <process command="./wsh.php --api=freedom_import --file=./@APPNAME@/zoo-families.ods">
+    <process command="./wsh.php --api=freedom_import --reinitattr=yes --file=./@APPNAME@/zoo-families.ods">
 			<label lang="en">Update zoo families</label>
 		</process>
   </post-upgrade>

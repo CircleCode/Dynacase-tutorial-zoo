@@ -1,0 +1,11 @@
+
+[TEXT:Today] : [today]<br/>
+[TEXT:The animal] <u>[animal_name]</u> (<i>[tatouage]</i>)<br/>
+<ul>
+  <li>[TEXT:taxo_species] : [espece]</li>
+  <li>[TEXT:taxo_class] : [classe]</li>
+</ul>
+a &eacute;t&eacute; malade [n] jours.<br/>
+
+[TEXT:Zoo_Veterinary] : [vetoname]
+

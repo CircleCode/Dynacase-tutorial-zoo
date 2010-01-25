@@ -1,0 +1,20 @@
+<style>
+    div.adult {
+	background-color:#7599d0;
+        width:200px;border:1px dashed black;float:left;margin:10px;text-align:center;padding:5px;
+    }
+    div.child {
+	background-color:#79d075;
+        width:200px;border:1px dashed black;float:left;margin:10px;text-align:center;padding:5px;
+    }
+</style>
+<h2>[n] tickets</h2>
+
+[BLOCK TICKET]
+
+<div [IF isAdult]class="adult"[ENDIF isAdult] [IFNOT isAdult]class="child"[ENDIF isAdult]>
+  [TEXT:Entrance] <br>
+    <b>[type]</b>
+[today]
+</div>
+[ENDBLOCK TICKET]
