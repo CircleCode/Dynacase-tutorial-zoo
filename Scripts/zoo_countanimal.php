@@ -4,7 +4,7 @@
  * Count Animal by Classe
  *
  * @author Anakeen 2008
- * @version $Id: zoo_countanimal.php,v 1.1 2010-01-15 15:19:40 eric Exp $
+ * @version $Id: zoo_countanimal.php,v 1.2 2010-02-18 07:58:09 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 
@@ -48,7 +48,7 @@ if ($s->count()==0) {
   $action->exitError(sprintf("no classe found %s",$latin));  
 }
 $docclass=$s->nextDoc();
-print sprintf("Classe %s :",$docclass->title);
+print sprintf("Classe %s :",$docclass->getTitle());
 
 // search animals from classe
 

@@ -1,5 +1,5 @@
 # ============================================
-# $Id: Makefile.in,v 1.1 2010-01-15 15:15:38 eric Exp $
+# $Id: Makefile.in,v 1.2 2010-02-18 07:58:09 eric Exp $
 # ============================================
 PACKAGE = @PACKAGE@
 VERSION = @VERSION@
@@ -19,7 +19,7 @@ SUBDIR= Families Actions Scripts Images
 
 include $(utildir)/PubRule
 
-TRANSODS = 
+TRANSODS = Families/zoo-families.ods
 DISTFILES += $(SUBDIR)  $(wildcard *.ods)\
             $(wildcard *.in) \
             VERSION RELEASE  \

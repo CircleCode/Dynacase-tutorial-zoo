@@ -3,7 +3,7 @@
  * Animal comportment
  *
  * @author Anakeen 2010
- * @version $Id: Method.Animal.php,v 1.2 2010-01-25 13:45:18 eric Exp $
+ * @version $Id: Method.Animal.php,v 1.3 2010-02-18 07:58:09 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  */
@@ -46,38 +46,40 @@ Class _ANIMAL extends Doc {
         if ($this->revision == 0) return $this->verifyCapacity();
     }
     public function postCreated() {
-      if ($this->revision == 0) {
-	$err=$this->addToEnclos();
-      }
+        $err="";
+        if ($this->revision == 0) {
+            $err=$this->addToEnclos();
+        }
+        return $err;
     }
 
     /**
      * constraint to verify entrance date and birth date
      */
     public function validatePastDate($date) {
-      $t1=FrenchDateToUnixTs($date);
-      $sug=array();
-      $err="";
-      if ($t1 > time()) $err=_("birthday date must be set before today");
-      if ($err!="") $sug[]=$this->getDate();
-      return array("err"=>$err,
+        $t1=FrenchDateToUnixTs($date);
+        $sug=array();
+        $err="";
+        if ($t1 > time()) $err=_("birthday date must be set before today");
+        if ($err!="") $sug[]=$this->getDate();
+        return array("err"=>$err,
 		   "sug"=>$sug);
-  
+
     }
 
     public function addToEnclos() {
-      $enclosId=$this->getFreeEnclos();
-      $err="";
-      if ($enclosId) {
-	$enclos=new_doc($this->dbaccess, $enclosId);
-	if ($enclos->isAlive()) {
-	  $animals=$enclos->getTValue("en_animaux");
-	  $animals[]=$this->id;
-	  $err=$enclos->setValue("en_animaux",$animals);
-	  if ($err=="") $err=$enclos->modify();
-	}
-      }
-      return $err;
+        $enclosId=$this->getFreeEnclos();
+        $err="";
+        if ($enclosId) {
+            $enclos=new_doc($this->dbaccess, $enclosId);
+            if ($enclos->isAlive()) {
+                $animals=$enclos->getTValue("en_animaux");
+                $animals[]=$this->id;
+                $err=$enclos->setValue("en_animaux",$animals);
+                if ($err=="") $err=$enclos->modify();
+            }
+        }
+        return $err;
     }
 
     /**
@@ -112,7 +114,7 @@ Class _ANIMAL extends Doc {
     public function verifyCapacity() {
         include_once("FDL/Class.SearchDoc.php");
 
-
+        $err="";
         $s=new SearchDoc($this->dbaccess,"ENCLOS");
         $idespece=$this->getValue("an_espece");
         $s->addFilter("en_espece ~ '\\\\y$idespece\\\\y'");
@@ -122,18 +124,20 @@ Class _ANIMAL extends Doc {
 
         $nbdoc=$s->count();
 
-        if ($nbdoc==0) $err=_("no enclos");
+        if ($nbdoc==0) $err=_("no enclos for this species");
         else {
             while ($doc=$s->nextDoc()) {
                 $err=$doc->detectMaxCapacity();
-                if ($err=="") break; // first found
-
+                if ($err=="") {
+                    break; // first found
+                }
             }
+            if ($err!="") $err=sprintf(_("each enclos are full : %s"),$err);
         }
         return $err;
     }
 
- 
+
 
     /**
      * refresh all childs to recompute father and mother
@@ -148,16 +152,16 @@ Class _ANIMAL extends Doc {
 
         include_once("FDL/Class.SearchDoc.php");
         $s=new SearchDoc($this->dbaccess,"ANIMAL");
-        $s->addFilter(getSqlCond($childs,"id",true)); // get all animals from ids
+        $s->addFilter(getSqlCond($childs,"initid",true)); // get all animals from ids
         $s->noViewControl(); // no test view acl
         $s->setObjectReturn();
         $s->search();
 
-       
-	while ($doc=$s->nextDoc()) {
-	  $doc->refresh();
-	}
-        
+         
+        while ($doc=$s->nextDoc()) {
+            $doc->refresh();
+        }
+
         return $err;
     }
 
