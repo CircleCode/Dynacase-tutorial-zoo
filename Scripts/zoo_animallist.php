@@ -4,7 +4,7 @@
  * List Animal
  *
  * @author Anakeen 2008
- * @version $Id: zoo_animallist.php,v 1.1 2010-01-15 15:19:40 eric Exp $
+ * @version $Id: zoo_animallist.php,v 1.2 2010-04-02 14:17:14 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 
@@ -30,7 +30,7 @@ $mode=(GetHttpVars("mode"));
 if (! $mode)   $action->exitError("mode needed :\n $usage");  
 
 $filtre=array();
-$famid= getFamIdFromName($dbaccess,"ANIMAL");
+$famid= getFamIdFromName($dbaccess,"ZOO_ANIMAL");
 $sqlorder="an_espece,an_nom";
 
 $time_start = microtime(true);

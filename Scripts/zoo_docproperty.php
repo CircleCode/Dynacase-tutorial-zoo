@@ -4,7 +4,7 @@
  * View property
  *
  * @author Anakeen 2008
- * @version $Id: zoo_docproperty.php,v 1.1 2010-01-15 15:19:40 eric Exp $
+ * @version $Id: zoo_docproperty.php,v 1.2 2010-04-02 14:17:14 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 
@@ -18,17 +18,15 @@
 include_once("FDL/Class.Doc.php");
 
 $usage="usage  --docid=<doc identificator>";
-$dbaccess=$action->GetParam("FREEDOM_DB");
+$dbaccess=$action->getParam("FREEDOM_DB");
 if ($dbaccess == "") {
   print "Freedom Database not found : param FREEDOM_DB";
   exit;
 }
-
-$docid = 9;
-
+$docid = $action->getArgument("docid",9);
 $doc=new_doc($dbaccess,$docid);
 if ($doc->isAlive()) {
-  print_r($doc);
+  print(get_class($doc)).":".$doc->getTitle();
  } else {
   print sprintf("Document <%s> is not alive\n",$docid);
  }

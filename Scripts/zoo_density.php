@@ -4,7 +4,7 @@
  * Animal Density
  *
  * @author Anakeen 2008
- * @version $Id: zoo_density.php,v 1.1 2010-01-15 15:19:40 eric Exp $
+ * @version $Id: zoo_density.php,v 1.2 2010-04-02 14:17:14 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 
@@ -26,7 +26,7 @@ if ($dbaccess == "") {
 
 // search the classe document
 
-$s=new SearchDoc($dbaccess,"ENCLOS");
+$s=new SearchDoc($dbaccess,"ZOO_ENCLOS");
 $s->setObjectReturn(); 
 $s->search(); 
 

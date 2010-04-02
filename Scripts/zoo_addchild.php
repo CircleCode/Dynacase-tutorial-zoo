@@ -4,7 +4,7 @@
  * Add child to an Animal
  *
  * @author Anakeen 2008
- * @version $Id: zoo_addchild.php,v 1.1 2010-01-15 15:19:40 eric Exp $
+ * @version $Id: zoo_addchild.php,v 1.2 2010-04-02 14:17:14 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 
@@ -33,7 +33,7 @@ if ($n<0) $action->exitError("n must be greater than 0 :\n $usage");
 
 $doc=new_doc($dbaccess,$docid);
 if ($doc->isAlive()) {
-  $animalid=getFamIdFromName($dbaccess,'ANIMAL');
+  $animalid=getFamIdFromName($dbaccess,'ZOO_ANIMAL');
   if ($doc->fromid != $animalid) {
     $fdoc=$doc->getFamDoc();
     $action->exitError(sprintf("%s [%d] document is not an animal (it is a %s)",
@@ -44,7 +44,7 @@ if ($doc->isAlive()) {
   $nc=count($childs);
 
   for ($i=0;$i<$n;$i++) {
-    $anchild=createDoc($dbaccess,"ANIMAL");
+    $anchild=createDoc($dbaccess,"ZOO_ANIMAL");
     if (! $anchild) $action->exitError("cannot create ANIMAL");
     $anchild->setValue("an_nom",sprintf("%s Junior %d",
 					$doc->getValue("an_nom"),($nc+$i+1)));

@@ -4,7 +4,7 @@
  * Count Animal by Classe
  *
  * @author Anakeen 2008
- * @version $Id: zoo_countanimal.php,v 1.2 2010-02-18 07:58:09 eric Exp $
+ * @version $Id: zoo_countanimal.php,v 1.3 2010-04-02 14:17:14 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 
@@ -35,14 +35,14 @@ if (! $latin)   $action->exitError("classe needed :\n $usage");
 // search the classe document
 
 
-$s=new SearchDoc($dbaccess,"ZOO:CLASSE");
+$s=new SearchDoc($dbaccess,"ZOO_CLASSE");
 $s->addFilter("lower(cl_nomscientifique) = '".pg_escape_string(strtolower($latin))."'");
 $s->setObjectReturn(); 
 $s->slice=1;
 $tdoc=$s->search();
 
 if ($s->count()==0) {
-  $s=new SearchDoc($dbaccess,"ZOO:CLASSE");
+  $s=new SearchDoc($dbaccess,"ZOO_CLASSE");
   $t=$s->search();
   foreach ($t as $k=>$v) print "$k) ".$v["title"]."\n";
   $action->exitError(sprintf("no classe found %s",$latin));  
@@ -52,8 +52,8 @@ print sprintf("Classe %s :",$docclass->getTitle());
 
 // search animals from classe
 
-$s=new SearchDoc($dbaccess,"ANIMAL");
-$s->addFilter("an_classe='".$docclass->id."'");
+$s=new SearchDoc($dbaccess,"ZOO_ANIMAL");
+$s->addFilter(sprintf("an_classe='%d'",$docclass->id));
 $tdoc=$s->search();
 
 print sprintf("%d animals found.\n",$s->count());
