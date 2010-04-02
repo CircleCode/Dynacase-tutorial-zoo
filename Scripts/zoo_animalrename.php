@@ -4,7 +4,7 @@
  * Rename Animal
  *
  * @author Anakeen 2008
- * @version $Id: zoo_animalrename.php,v 1.3 2010-04-02 14:17:14 eric Exp $
+ * @version $Id: zoo_animalrename.php,v 1.4 2010-04-02 14:49:05 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 
@@ -25,8 +25,8 @@ if ($dbaccess == "") {
   exit;
 }
 
-$docid = GetHttpVars("docid",0); // special docid
-$newname = GetHttpVars("newname"); // 
+$docid = $action->getArgument("docid",0); // special docid
+$newname = $action->getArgument("newname"); // 
 
 if ($newname=="") {
   $action->exitError("attribute newname is needed:\n$usage");

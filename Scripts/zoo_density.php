@@ -4,7 +4,7 @@
  * Animal Density
  *
  * @author Anakeen 2008
- * @version $Id: zoo_density.php,v 1.2 2010-04-02 14:17:14 eric Exp $
+ * @version $Id: zoo_density.php,v 1.3 2010-04-02 14:49:05 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 

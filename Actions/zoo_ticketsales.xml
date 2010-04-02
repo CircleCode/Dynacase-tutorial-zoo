@@ -1,4 +1,4 @@
-[ZONE FDL:HTMLHEAD]
+[ZONE FDL:HTMLHEAD?title=[TEXT:Day Sales] : [date]]
 <img align="right" src="[IMG:zoo.png]"><h1>[TEXT:Date] : [date]</h1>
 <table style="width:100%">
 <thead style="background-color:[COLOR_B8]"><tr>

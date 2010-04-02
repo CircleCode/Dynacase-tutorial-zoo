@@ -3,7 +3,7 @@
  * Create or update animal folder
  *
  * @author Anakeen 2008
- * @version $Id: zoo_animalfolder.php,v 1.2 2010-01-25 13:41:16 eric Exp $
+ * @version $Id: zoo_animalfolder.php,v 1.3 2010-04-02 14:49:04 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  *
@@ -17,13 +17,13 @@ include_once("FDL/Lib.Dir.php");
  * @global id Http var : animal document Identificator
  */
 function zoo_animalfolder(&$action) {
-    $id=getHTTPVars("id");
+    $id=$action->getArgument("id");
     $dbaccess=getParam("FREEDOM_DB");
 
-    $doc=new_doc($dbaccess, $id);
+    $doc=new_doc($dbaccess, $id, true);
     if ($doc->isAlive()) {
 
-        if ($doc->fromname != "ANIMAL") {
+        if ($doc->fromname != "ZOO_ANIMAL") {
             $err=sprintf(_("document %s (%d) is not an animal"),$doc->title, $doc->id);
             $action->exitError($err);
         }
@@ -34,7 +34,7 @@ function zoo_animalfolder(&$action) {
             $fld=createDoc($dbaccess, "PORTFOLIO");
             $err=$fld->Add();
             if ($err) $action->exitError($err);
-            $fdl->setLogicalName($name);
+            $fld->setLogicalIdentificator($name);
         }
         $fld->setValue("ba_title",sprintf(_("Folder of %s"),$doc->getTitle()));
         $fld->setValue("ba_desc",sprintf(_("Information about [ADOC %d]"),$doc->id));

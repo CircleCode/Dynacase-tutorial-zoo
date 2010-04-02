@@ -6,17 +6,17 @@ include_once("FDL/Class.WDoc.php");
 
 Class WAdoption extends WDoc {
   public $attrPrefix="WAD";
-  const initialised="initialised"; # N_("initialised")
-  const transmited="transmited"; # N_("transmited")
-  const accepted="accepted"; # N_("accepted")
-  const refused="refused"; # N_("refused")
-  const realised="realised"; # N_("realised")
+  const initialised="zoo_initialised"; # _("zoo_initialised")
+  const transmited="zoo_transmited"; # _("zoo_transmited")
+  const accepted="zoo_accepted"; # _("zoo_accepted")
+  const refused="zoo_refused"; # _("zoo_refused")
+  const realised="zoo_realised"; # _("zoo_realised")
 
-  const Ttransmited="Ttransmited"; # N_("Ttransmited")
-  const Taccepted="Taccepted"; # N_("Taccepted")
-  const Trefused="Trefused"; # N_("Trefused")
-  const Tretry="Tretry"; # N_("Tretry")
-  const Trealised="Trealised"; # N_("Trealised")
+  const Ttransmited="zoo_Ttransmited"; # _("zoo_Ttransmited")
+  const Taccepted="zoo_Taccepted"; # _("zoo_Taccepted")
+  const Trefused="zoo_Trefused"; # _("zoo_Trefused")
+  const Tretry="zoo_Tretry"; # _("zoo_Tretry")
+  const Trealised="zoo_Trealised"; # _("zoo_Trealised")
 
   public $firstState=self::initialised;
 
@@ -28,7 +28,7 @@ Class WAdoption extends WDoc {
 						    "m2"=>"sendRefusedMail",
 						    "nr"=>true,
 						    "ask"=>array("wad_refus")),
-			     self::Trealised=>array("m1"=>"",
+			     self::Trealised=>array("m1"=>"verifyEnclosDispo",
 						    "m2"=>"createAnimal"),			  
 			     self::Tretry =>array("m1"=>"",
 						  "m2"=>"sendRetryMail"));
@@ -49,15 +49,16 @@ Class WAdoption extends WDoc {
 			    "e2"=>self::initialised,
 			    "t"=>self::Tretry) );
 
-  public $stateactivity=array(self::initialised=>"adoption writting2",
-			      self::refused=>"adoption refused",
-			      self::transmited=>"adoption verification"); # _("adoption writting") _("adoption verification")
+  public $stateactivity=array(self::initialised=>"zoo_adoption writting",
+			      self::transmited=>"zoo_adoption verification"); # _("zoo_adoption writting") _("zoo_adoption verification")
 
 
 
   public function verifyvalidatormail() {
+    $idval=$this->doc->GetValue("DE_IDVAL");
+    if (! $idval) return sprintf(_("zoo:no validator defined"));
     $to = $this->doc->GetRValue("DE_IDVAL:US_MAIL");
-    if (! $to) return sprintf(_("no mail for validator"));
+    if (! $to) return sprintf(_("zoo:no mail for validator"));
     return "";
   }
   /**
@@ -66,17 +67,16 @@ Class WAdoption extends WDoc {
   public function sendTransmitedMail($newstate ) {
     $tkeys=array();
     if ($this->doc->getRValue("de_idespece:de_protegee")== "1") {
-      $mt=new_doc($this->dbaccess,$this->getParamValue("WAD_MAILSECURE"));
-    }  else {
       // get others animals
       include_once("FDL/Class.SearchDoc.php");
-      $s=new SearchDoc($this->dbaccess,"ANIMAL");
+      $s=new SearchDoc($this->dbaccess,"ZOO_ANIMAL");
       $s->addFilter(sprintf("an_espece ='%d'",$this->doc->getValue("de_idespece")));
       $t=$s->search();
       $tanimal=array();
       foreach ($t as $animal) $tanimal[]=$this->getDocAnchor($t["id"],"mail");
       $tkeys["animals"]=implode(", ",$tanimal);
-
+      $mt=new_doc($this->dbaccess,$this->getParamValue("WAD_MAILSECURE"));
+    }  else {
       $mt=new_doc($this->dbaccess,$this->getParamValue("WAD_MAILCURRENT"));      
       // $this->sendTransmitedMail_detail($newstate);
     }
@@ -163,8 +163,20 @@ Class WAdoption extends WDoc {
     return "";
   }
 
+  public function verifyEnclosDispo() {
+    $ani=createDoc($this->dbaccess,"ZOO_ANIMAL",true);
+    $err="";
+    if ($ani) {
+      $ani->setValue("an_espece",$this->doc->getValue("de_idespece"));
+      $err=$ani->verifyCapacity();      
+    } else {
+      return _("zoo:Cannot create animal");
+    }
+    return $err;
+  }
+
   public function createAnimal() {
-    $ani=createDoc($this->dbaccess,"ANIMAL");
+    $ani=createDoc($this->dbaccess,"ZOO_ANIMAL",true);
     if ($ani) {
       $ani->setValue("an_nom",$this->doc->getValue("de_nom"));
       $ani->setValue("an_espece",$this->doc->getValue("de_idespece"));
@@ -174,6 +186,8 @@ Class WAdoption extends WDoc {
       if ($err=="") {
 	$ani->postModify();
 	$ani->refresh(); 
+	$ani->addComment(sprintf(_("Creation from adoption %s [%d]"),$this->doc->getTitle(),$this->doc->id));
+				   
 	SetHttpVar("redirect_app","FDL");
 	SetHttpVar("redirect_act","FDL_CARD&id=".$ani->id);
       }

@@ -4,7 +4,7 @@
  * Count Animal by Classe
  *
  * @author Anakeen 2008
- * @version $Id: zoo_countanimal.php,v 1.3 2010-04-02 14:17:14 eric Exp $
+ * @version $Id: zoo_countanimal.php,v 1.4 2010-04-02 14:49:05 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 
@@ -28,7 +28,7 @@ if ($dbaccess == "") {
 }
 
 
-$latin = (GetHttpVars("classe")); // 
+$latin = ($action->getArgument("classe")); // 
 
 if (! $latin)   $action->exitError("classe needed :\n $usage");  
 

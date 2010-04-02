@@ -1,3 +1,3 @@
-<div style="float:left;margin:4px"><a title="[aname]" href="[CORE_STANDURL]app=FDL&action=FDL_CARD&id=[anid]"><IMG width="100px" SRC="[photo]"><br>[aname]</a></div>
+<div style="float:left;margin:4px"><a title="[aname]" href="?app=FDL&action=FDL_CARD&id=[anid]"><IMG height="70px" SRC="[photo]"><br/>[aname]</a></div>
 
 

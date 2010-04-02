@@ -4,7 +4,7 @@
  * Add child to an Animal
  *
  * @author Anakeen 2008
- * @version $Id: zoo_addchild.php,v 1.2 2010-04-02 14:17:14 eric Exp $
+ * @version $Id: zoo_addchild.php,v 1.3 2010-04-02 14:49:05 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 
@@ -25,8 +25,8 @@ if ($dbaccess == "") {
   exit;
 }
 
-$docid = GetHttpVars("docid",0); // special docid
-$n = intval(GetHttpVars("n")); // 
+$docid = $action->getArgument("docid",0); // special docid
+$n = intval($action->getArgument("n")); // 
 
 if (! $n)   $action->exitError("n needed :\n $usage");  
 if ($n<0) $action->exitError("n must be greater than 0 :\n $usage");  

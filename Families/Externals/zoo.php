@@ -54,11 +54,11 @@ function getAddress($dbaccess,$name="") {
 		$mobile=getv($v,"us_mobile");
 		$phone=getv($v,"us_phone");
 		$postalcode=sprintf("%s\n%s %s",
-		getv($v,"us_workaddr"),
-		getv($v,"us_workpostalcode"),
-		getv($v,"us_worktown"));
-		$tr[] = array($v["title"] ,
-		$v["id"],$v["title"],$postalcode,$phone,$mobile);
+		          getv($v,"us_workaddr"),
+		          getv($v,"us_workpostalcode"),
+		          getv($v,"us_worktown"));
+		$tr[] = array($v["title"] . '<i>'.$v["us_society"].'</i>',
+		              $v["id"],$v["title"],$postalcode,$phone,$mobile);
 
 	}
 	return $tr;

@@ -3,7 +3,7 @@
  * Gate comportment
  *
  * @author Anakeen 2010
- * @version $Id: Method.Enclos.php,v 1.1 2010-01-15 15:16:38 eric Exp $
+ * @version $Id: Method.Enclos.php,v 1.2 2010-04-02 14:49:04 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  */
@@ -22,8 +22,8 @@ Class _ENCLOS extends Doc {
 
 
 	function specRefresh() {
-		$err=$this->detectMaxCapacity();
-		return $err;
+		$msg=$this->detectMaxCapacity();
+		return $msg;
 	}
 
 	/**
@@ -32,8 +32,8 @@ Class _ENCLOS extends Doc {
 	 */
 	function detectMaxCapacity() {
 		$nb=$this->getNbreAnimaux();
-		if ($nb == intval($this->getValue("en_capacite"))) return _("Full Area");
-		elseif ($nb > intval($this->getValue("en_capacite"))) return (sprintf(_("Maximum Capacity reached %d > %s"),$nb,intval($this->getValue("en_capacite"))));
+		if ($nb == intval($this->getValue("en_capacite"))) return _("zoo:Full Area");
+		elseif ($nb > intval($this->getValue("en_capacite"))) return (sprintf(_("zoo:Maximum Capacity reached %d > %s"),$nb,intval($this->getValue("en_capacite"))));
 	}
 
 	/**

@@ -1,14 +1,12 @@
 <table width="100%">
-[ZONE FDL:VIEWFRAME?frameid=en_identification]
-[ZONE FDL:VIEWFRAME?frameid=en_localisation]
+<tr><td style="width:50%"><table>[ZONE FDL:VIEWFRAME?frameid=en_identification]</table></td>
+<td><table>[ZONE FDL:VIEWFRAME?frameid=en_localisation]</table></td>
+</tr></table>
 
-<tr><td>
+
 <fieldset><legend>photo</legend>
 [BLOCK PHOTO]
 [ZONE ZOO:APHOTO?id=[anid]]
 [ENDBLOCK PHOTO]
 </fieldset>
-</td></tr>
-
-</table>
  
