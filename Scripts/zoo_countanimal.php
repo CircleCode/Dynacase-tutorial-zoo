@@ -4,7 +4,7 @@
  * Count Animal by Classe
  *
  * @author Anakeen 2008
- * @version $Id: zoo_countanimal.php,v 1.4 2010-04-02 14:49:05 eric Exp $
+ * @version $Id: zoo_countanimal.php,v 1.5 2010-04-20 07:55:45 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 
@@ -36,7 +36,7 @@ if (! $latin)   $action->exitError("classe needed :\n $usage");
 
 
 $s=new SearchDoc($dbaccess,"ZOO_CLASSE");
-$s->addFilter("lower(cl_nomscientifique) = '".pg_escape_string(strtolower($latin))."'");
+$s->addFilter("lower(cl_nomscientifique) = '%s'",strtolower($latin));
 $s->setObjectReturn(); 
 $s->slice=1;
 $tdoc=$s->search();

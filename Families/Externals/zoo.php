@@ -5,30 +5,30 @@
  * @param string $class scientific name of classes
  * @param string $name optionnal filter to select order
  */
-function getOrdre($class,$name="") {
-	$cl=new_doc(getParam("FREEDOM_DB"),$class);
-	if ($cl->isAlive()) {
-		$classtitle=$cl->getTitle();
-		$tabOrdre= array(
+function getOrdre($dbaccess,$class,$name="") {
+  $cl=new_doc($dbaccess,$class);
+  if ($cl->isAlive()) {
+    $classtitle=$cl->getValue("CL_NOMSCIENTIFIQUE");
+    $tabOrdre= array(
 		     "Mammalia"=>array("Rongeur","Artiodactyles","Cétacés"),
 		     "Aves"=>array("Falconiforme","Procellariiforme","Struthioniforme"),
 		     "Lissamphibia"=>array("Urodèles","Batracines","Anoures"),
 		     "Reptilia"=>array("Crocodiliens", "Saurophidiens","Squamates"),
 		     "Actinopterygii" => array("Hypotrème","Anguilliformes","Perciforme")
 
-		);
+		     );
 
-		$resultat=$tabOrdre[$classtitle];
-		$ordre=array();
-		if (is_array($resultat)) {
-			foreach($resultat as $cle=>$val) {
-				if (($name == "") || (preg_match("/$name/i", $val )))   $ordre[]= array($val,$val);
-			}
-			return $ordre;
-		} else {
-			return _("zoo:no class referenced");
-		}
-	} else return _("zoo:unknown class");
+    $resultat=$tabOrdre[$classtitle];
+    $ordre=array();
+    if (is_array($resultat)) {
+      foreach($resultat as $cle=>$val) {
+	if (($name == "") || (preg_match("/$name/i", $val )))   $ordre[]= array($val,$val);
+      }
+      return $ordre;
+    } else {
+      return _("zoo:no class referenced");
+    }
+  } else return _("zoo:unknown class");
 }
 
 
@@ -43,8 +43,7 @@ function getAddress($dbaccess,$name="") {
 
 	$s=new SearchDoc($dbaccess,"USER");
 	if ($name != "") {  // add optionnal filter on title
-		$filter=sprintf("title ~* '%s'",pg_escape_string($name));
-		$s->addFilter($filter);
+		$s->addFilter("title ~* '%s'",$name);
 	}
 	$s->slice=100;
 	$tdoc=$s->search();

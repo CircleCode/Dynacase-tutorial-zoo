@@ -3,7 +3,7 @@
  * Display sum of sales
  *
  * @author Anakeen 2008
- * @version $Id: zoo_ticketsales.php,v 1.3 2010-04-02 14:49:04 eric Exp $
+ * @version $Id: zoo_ticketsales.php,v 1.4 2010-04-20 07:55:44 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  *
@@ -18,15 +18,14 @@ include_once("FDL/Class.SearchDoc.php");
  */
 function zoo_ticketsales(&$action) {
     $date=$action->getArgument("date");
-    $dbaccess=getParam("FREEDOM_DB");
+    $dbaccess=$action->getParam("FREEDOM_DB");
 
-    //header('Content-type: text/xml; charset=utf-8');
 
    
     if (!$date) $date=Doc::getDate();
 
     $s=new SearchDoc($dbaccess,"ZOO_ENTREE");
-    $s->addFilter("ent_date='".pg_escape_string($date)."'");
+    $s->addFilter("ent_date='%s'",$date);
     $s->setObjectReturn();
     $tdoc=$s->search();
 
@@ -60,4 +59,10 @@ function zoo_ticketsales(&$action) {
     $action->lay->set("total",$pas+$pes);
     $action->lay->set("date",$date);
 }
+
+function zoo_xmlticketsales(&$action) {
+    header('Content-type: text/xml; charset=utf-8');
+    zoo_ticketsales($action);
+}
+
 ?>

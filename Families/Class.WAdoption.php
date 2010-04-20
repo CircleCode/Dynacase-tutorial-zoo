@@ -1,9 +1,6 @@
 <?php
 include_once("FDL/Class.WDoc.php");
 
-
-
-
 Class WAdoption extends WDoc {
   public $attrPrefix="WAD";
   const initialised="zoo_initialised"; # _("zoo_initialised")
@@ -52,7 +49,7 @@ Class WAdoption extends WDoc {
   public $stateactivity=array(self::initialised=>"zoo_adoption writting",
 			      self::transmited=>"zoo_adoption verification"); # _("zoo_adoption writting") _("zoo_adoption verification")
 
-
+  protected $nouvelAnimal=null;
 
   public function verifyvalidatormail() {
     $idval=$this->doc->GetValue("DE_IDVAL");
@@ -70,7 +67,7 @@ Class WAdoption extends WDoc {
       // get others animals
       include_once("FDL/Class.SearchDoc.php");
       $s=new SearchDoc($this->dbaccess,"ZOO_ANIMAL");
-      $s->addFilter(sprintf("an_espece ='%d'",$this->doc->getValue("de_idespece")));
+      $s->addFilter("an_espece ='%d'",$this->doc->getValue("de_idespece"));
       $t=$s->search();
       $tanimal=array();
       foreach ($t as $animal) $tanimal[]=$this->getDocAnchor($t["id"],"mail");
@@ -164,11 +161,11 @@ Class WAdoption extends WDoc {
   }
 
   public function verifyEnclosDispo() {
-    $ani=createDoc($this->dbaccess,"ZOO_ANIMAL",true);
+    $this->nouvelAnimal=createDoc($this->dbaccess,"ZOO_ANIMAL",true);
     $err="";
-    if ($ani) {
-      $ani->setValue("an_espece",$this->doc->getValue("de_idespece"));
-      $err=$ani->verifyCapacity();      
+    if ($this->nouvelAnimal) {
+      $this->nouvelAnimal->setValue("an_espece",$this->doc->getValue("de_idespece"));
+      $err=$this->nouvelAnimal->verifyCapacity();      
     } else {
       return _("zoo:Cannot create animal");
     }
@@ -176,7 +173,7 @@ Class WAdoption extends WDoc {
   }
 
   public function createAnimal() {
-    $ani=createDoc($this->dbaccess,"ZOO_ANIMAL",true);
+    $ani=$this->nouvelAnimal;
     if ($ani) {
       $ani->setValue("an_nom",$this->doc->getValue("de_nom"));
       $ani->setValue("an_espece",$this->doc->getValue("de_idespece"));

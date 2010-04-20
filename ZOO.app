@@ -1,6 +1,6 @@
 <?php
 // ---------------------------------------------------------------
-// $Id: ZOO.app,v 1.3 2010-04-02 14:49:04 eric Exp $
+// $Id: ZOO.app,v 1.4 2010-04-20 07:55:43 eric Exp $
 // $Source: /home/cvsroot/anakeen/addons/zoo3/ZOO.app,v $
 
 
@@ -38,7 +38,7 @@ array(
    "name"		=>"ZOO_XMLTICKETSALES",
    "short_name"		=>N_("xml sum of sales"),
    "script"             =>"zoo_ticketsales.php",
-   "function"           =>"zoo_ticketsales",
+   "function"           =>"zoo_xmlticketsales",
    "acl"		=>"ZOO_MONEY"),
 
 array(

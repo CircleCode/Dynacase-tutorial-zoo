@@ -4,7 +4,7 @@
  * Zone View animal photo
  *
  * @author Anakeen 2008
- * @version $Id: aphoto.php,v 1.1 2010-01-15 15:15:39 eric Exp $
+ * @version $Id: aphoto.php,v 1.2 2010-04-20 07:55:44 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage ZOO
@@ -16,7 +16,7 @@
   * @global id Http var : document identificator
   */   
 function aphoto(&$action) {
-  $idanimal=getHTTPVars("id");
+  $idanimal=$action->getArgument("id");
   $dbaccess=$action->getParam("FREEDOM_DB");
   $doc= new_Doc($dbaccess,$idanimal);
   $photo=$doc->getHtmlAttrValue("AN_PHOTO");

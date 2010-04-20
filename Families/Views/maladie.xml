@@ -1,11 +1,11 @@
 
-[TEXT:Today] : [today]<br/>
-[TEXT:The animal] <u>[animal_name]</u> (<i>[tatouage]</i>)<br/>
+[TEXT:Zoo:Today] : [today]<br/>
+[TEXT:Zoo:The animal] <u>[animal_name]</u> (<i>[tatouage]</i>)<br/>
 <ul>
-  <li>[TEXT:taxo_species] : [espece]</li>
-  <li>[TEXT:taxo_class] : [classe]</li>
+  <li>[TEXT:Zoo:taxo_species] : [espece]</li>
+  <li>[TEXT:Zoo:taxo_class] : [classe]</li>
 </ul>
-a &eacute;t&eacute; malade [n] jours.<br/>
+a &eacute;t&eacute; malade [n] fois.<br/>
 
-[TEXT:Zoo_Veterinary] : [vetoname]
+[TEXT:Zoo:Veterinary] : [vetoname]
 

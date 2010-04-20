@@ -3,7 +3,7 @@
  * Create or update animal folder
  *
  * @author Anakeen 2008
- * @version $Id: zoo_animalfolder.php,v 1.3 2010-04-02 14:49:04 eric Exp $
+ * @version $Id: zoo_animalfolder.php,v 1.4 2010-04-20 07:55:44 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  *
@@ -53,14 +53,14 @@ function zoo_animalfolder(&$action) {
             $folio=new_doc($dbaccess,$namefolio1);
             if (! $folio->isAlive()) {
                 $folio=createDoc($dbaccess, "GUIDECARD");
-                $folio->name=$namefolio1;
                 $err=$folio->Add();
+                $folio->setLogicalIdentificator($namefolio1);
                 if ($err) $action->exitError($err);
             }
             $folio->setValue("ba_title",sprintf(_("Parents of %s"),$doc->title));
             $folio->setValue("ba_desc",sprintf(_("Father [ADOC %d]\nMother [ADOC %d]"),
-                     $doc->getValue("an_pere"),
-                     $doc->getValue("an_mere") ));
+            $doc->getValue("an_pere"),
+            $doc->getValue("an_mere") ));
             $err=$folio->modify();
             if ($err=="") $err=$fld->addFile($folio->initid);
             if ($err=="") {
@@ -76,8 +76,8 @@ function zoo_animalfolder(&$action) {
                 $folio=new_doc($dbaccess,$namefolio2);
                 if (! $folio->isAlive()) {
                     $folio=createDoc($dbaccess, "GUIDECARD");
-                    $folio->name=$namefolio2;
                     $err=$folio->Add();
+                    $folio->setLogicalIdentificator($namefolio2);
                     if ($err) $action->exitError($err);
                 }
                 $folio->setValue("ba_title",sprintf(_("Childs of %s"),$doc->title));

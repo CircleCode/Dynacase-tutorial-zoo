@@ -3,7 +3,7 @@
  * Animal comportment
  *
  * @author Anakeen 2010
- * @version $Id: Method.Animal.php,v 1.4 2010-04-02 14:49:04 eric Exp $
+ * @version $Id: Method.Animal.php,v 1.5 2010-04-20 07:55:44 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  */
@@ -44,7 +44,7 @@ Class _ANIMAL extends Doc {
 
         $s=new SearchDoc($this->dbaccess,$this->fromid);
         $s->addFilter("an_enfant ~ '\\\\y{$this->initid}\\\\y'");
-        $s->addFilter("an_sexe = '".pg_escape_string($sexeVar)."'");
+        $s->addFilter("an_sexe = '%s'",$sexeVar);
 	$s->setObjectReturn();
         $s->slice=1;
         $tdoc=$s->search();
@@ -86,7 +86,7 @@ Class _ANIMAL extends Doc {
      * constraint to verify entrance date and birth date
      */
     public function validatePastDate($date) {
-        $t1=FrenchDateToUnixTs($date);
+        $t1=StringDateToUnixTs($date);
         $sug=array();
         $err="";
         if ($t1 > time()) $err=_("zoo:birthday date must be set before today");
@@ -106,17 +106,17 @@ Class _ANIMAL extends Doc {
         $s=new SearchDoc($this->dbaccess,"ZOO_ENCLOS");
         $idespece=$this->getValue("an_espece");
         $s->addFilter("en_espece ~ '\\\\y$idespece\\\\y'");
+        $s->addFilter("en_nbre < en_capacite");
         $s->noViewControl(); // no test view acl
         $s->setObjectReturn();
         $s->search();
 
         $nbdoc=$s->count();
 
-        if ($nbdoc==0) $err=_("no enclos");
+        if ($nbdoc==0) $err=_("zoo:no enclos");
         else {
             while ($doc=$s->nextDoc()) {
-                $err=$doc->detectMaxCapacity();
-                if ($err=="") return $doc->id; // first found
+                return $doc->id; // first found
 
             }
         }
@@ -128,6 +128,7 @@ Class _ANIMAL extends Doc {
         include_once("FDL/Class.SearchDoc.php");
 
         $err="";
+        $this->getOldValue("an_enfant");
         $s=new SearchDoc($this->dbaccess,"ZOO_ENCLOS");
         $s->addFilter(sprintf("en_espece ~ '\\\\y%d\\\\y'",$this->getValue("an_espece")));
         $s->noViewControl(); // no test view acl
@@ -155,23 +156,25 @@ Class _ANIMAL extends Doc {
      * refresh all childs to recompute father and mother
      */
     public function refreshChilds() {
+        $err="";
         $idchild=$this->getTValue("an_enfant");
         $oldidchild=$this->_val2array($this->getOldValue("an_enfant"));
         // union unique of old and new values
         $childs=array();
-        foreach ($idchild as $child) $childs[$child]=$child;
-        foreach ($oldidchild as $child) $childs[$child]=$child;
+        foreach ($idchild as $child) if ($child) $childs[$child]=$child;
+        foreach ($oldidchild as $child) if ($child) $childs[$child]=$child;
 
-        include_once("FDL/Class.SearchDoc.php");
-        $s=new SearchDoc($this->dbaccess,"ZOO_ANIMAL");
-        $s->addFilter(getSqlCond($childs,"initid",true)); // get all animals from ids
-        $s->noViewControl(); // no test view acl
-        $s->setObjectReturn();
-        $s->search();
+        if (count($childs) >0) {
+            include_once("FDL/Class.SearchDoc.php");
+            $s=new SearchDoc($this->dbaccess,"ZOO_ANIMAL");
+            $s->addFilter(getSqlCond($childs,"initid",true)); // get all animals from ids
+            $s->noViewControl(); // no test view acl
+            $s->setObjectReturn();
+            $s->search();
 
-         
-        while ($doc=$s->nextDoc()) {
-            $doc->refresh();
+            while ($doc=$s->nextDoc()) {
+                $doc->refresh();
+            }
         }
 
         return $err;

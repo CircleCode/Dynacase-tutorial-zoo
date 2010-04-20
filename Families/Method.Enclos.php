@@ -3,7 +3,7 @@
  * Gate comportment
  *
  * @author Anakeen 2010
- * @version $Id: Method.Enclos.php,v 1.2 2010-04-02 14:49:04 eric Exp $
+ * @version $Id: Method.Enclos.php,v 1.3 2010-04-20 07:55:44 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  */
@@ -21,7 +21,7 @@ Class _ENCLOS extends Doc {
 	public  $defaultview= "ZOO:VIEWENCLOS";
 
 
-	function specRefresh() {
+	public function specRefresh() {
 		$msg=$this->detectMaxCapacity();
 		return $msg;
 	}

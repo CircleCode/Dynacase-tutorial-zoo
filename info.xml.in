@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <module name="freedom-zoo" disabled="no" version="@VERSION@" release="@RELEASE@">
 
-  <description>Template use to create freedom application.</description>
+  <description>Zoo application sample.</description>
 
   <requires>
-    <module name="freedom" version="2.14.1" comp="ge"/>
+    <module name="freedom" version="3.0.1" comp="ge"/>
   </requires>
 
   <post-install>
