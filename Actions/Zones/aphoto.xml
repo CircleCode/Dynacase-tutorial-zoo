@@ -1,4 +1,4 @@
 <div style="float:left;margin:4px"><a title="[aname]" href="?app=FDL&action=FDL_CARD&id=[anid]">
-	<IMG height="70px" SRC="[photo]&width=70"><br/>[aname]</a></div>
+	<IMG height="70px" [IF photo]SRC="[photo]&width=70"[ENDIF photo][IFNOT photo]SRC="[IMG:zoo_nophoto.png]"[ENDIF photo]><br/>[aname]</a></div>
 
 
