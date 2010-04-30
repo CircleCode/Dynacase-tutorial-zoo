@@ -39,27 +39,32 @@ function getOrdre($dbaccess,$class,$name="") {
  * @param string $name optionnal filter to select personn
  */
 function getAddress($dbaccess,$name="") {
-	include_once("FDL/Class.SearchDoc.php");
+  include_once("FDL/Class.SearchDoc.php");
 
-	$s=new SearchDoc($dbaccess,"USER");
-	if ($name != "") {  // add optionnal filter on title
-		$s->addFilter("title ~* '%s'",$name);
-	}
-	$s->slice=100;
-	$tdoc=$s->search();
+  $s=new SearchDoc($dbaccess,"USER");
+  if ($name != "") {  // add optionnal filter on title
+    $s->addFilter("title ~* '%s'",$name);
+  }
+  $s->slice=100;
+  $s->setObjectReturn();
+  $s->search();
 
-	$tr = array();
-	foreach($tdoc as $k=>$v) {
-		$mobile=getv($v,"us_mobile");
-		$phone=getv($v,"us_phone");
-		$postalcode=sprintf("%s\n%s %s",
-		          getv($v,"us_workaddr"),
-		          getv($v,"us_workpostalcode"),
-		          getv($v,"us_worktown"));
-		$tr[] = array($v["title"] . '<i>'.$v["us_society"].'</i>',
-		              $v["id"],$v["title"],$postalcode,$phone,$mobile);
+  $tr = array();
+  while ($doc=$s->nextDoc()) {
+    $mobile=$doc->getValue("us_mobile");
+    $phone=$doc->getValue("us_phone");
+    $postalcode=sprintf("%s\n%s %s",
+			$doc->getValue("us_workaddr"),
+			$doc->getValue("us_workpostalcode"),
+			$doc->getValue("us_worktown"));
+    $tr[] = array($doc->getTitle() . ' <i>'.$doc->getValue("us_society").'</i>',
+		  $doc->id,
+		  $doc->getTitle(),
+		  $postalcode,
+		  $phone,
+		  $mobile);
 
-	}
-	return $tr;
+  }
+  return $tr;
 }
 ?>

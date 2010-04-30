@@ -4,7 +4,7 @@
  * Animal Density
  *
  * @author Anakeen 2008
- * @version $Id: zoo_density.php,v 1.3 2010-04-02 14:49:05 eric Exp $
+ * @version $Id: zoo_density.php,v 1.4 2010-04-30 13:44:07 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 
@@ -32,7 +32,8 @@ $s->search();
 
 if ($s->count()==0) $action->exitError(sprintf("no enclos found"));  
 while ($doc=$s->nextDoc()) {
-  print sprintf("Enclos %30s : surface %4dm² :",$doc->getTitle(),$doc->getValue("en_surface"));
+  print sprintf("Enclos %30s : surface %4dm² :",$doc->getTitle(),
+                      $doc->getValue("en_surface"));
   $nbani=count($doc->getTvalue("en_animaux"));
   if ($nbani > 0) $density=floatval($doc->getValue("en_surface"))/$nbani;
   else $density=0;

@@ -52,9 +52,9 @@ Class WAdoption extends WDoc {
   protected $nouvelAnimal=null;
 
   public function verifyvalidatormail() {
-    $idval=$this->doc->GetValue("DE_IDVAL");
+    $idval=$this->doc->getValue("DE_IDVAL");
     if (! $idval) return sprintf(_("zoo:no validator defined"));
-    $to = $this->doc->GetRValue("DE_IDVAL:US_MAIL");
+    $to = $this->doc->getRValue("DE_IDVAL:US_MAIL");
     if (! $to) return sprintf(_("zoo:no mail for validator"));
     return "";
   }
@@ -63,14 +63,14 @@ Class WAdoption extends WDoc {
    */
   public function sendTransmitedMail($newstate ) {
     $tkeys=array();
-    if ($this->doc->getRValue("de_idespece:de_protegee")== "1") {
+    if ($this->doc->getRValue("de_idespece:es_protegee")== "1") {
       // get others animals
       include_once("FDL/Class.SearchDoc.php");
       $s=new SearchDoc($this->dbaccess,"ZOO_ANIMAL");
       $s->addFilter("an_espece ='%d'",$this->doc->getValue("de_idespece"));
       $t=$s->search();
       $tanimal=array();
-      foreach ($t as $animal) $tanimal[]=$this->getDocAnchor($t["id"],"mail");
+      foreach ($t as $animal) $tanimal[]=$this->getDocAnchor($animal["id"],"mail");
       $tkeys["animals"]=implode(", ",$tanimal);
       $mt=new_doc($this->dbaccess,$this->getParamValue("WAD_MAILSECURE"));
     }  else {

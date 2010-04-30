@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZOO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-20 09:52+0200\n"
-"PO-Revision-Date: 2010-04-08 14:03+0200\n"
+"POT-Creation-Date: 2010-04-27 10:59+0200\n"
+"PO-Revision-Date: 2010-04-28 10:46+0200\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: French <distrib@anakeen.com>\n"
 "MIME-Version: 1.0\n"
@@ -146,7 +146,7 @@ msgid "zoo:the veto document is not found"
 msgstr ""
 
 msgid "zoo:birthday date must be set before today"
-msgstr ""
+msgstr "La date de naissance doit être dans le passé"
 
 msgid "zoo:no enclos"
 msgstr ""
@@ -226,14 +226,14 @@ msgid "adoption %s to validate"
 msgstr "adoption %s est validée"
 
 msgid "no mail for redactor"
-msgstr ""
+msgstr "Le rédacteur n'a pas de adresse mail"
 
 #, c-format
 msgid "adoption %s to modify"
 msgstr "adoption %s doit être modifiée"
 
 msgid "no mail for realisator"
-msgstr ""
+msgstr "Le réalisateur n'a pas d'adresse mail"
 
 #, c-format
 msgid "adoption %s accepted"
@@ -255,11 +255,11 @@ msgid "Creation from adoption %s [%d]"
 msgstr ""
 
 msgid "zoo:Full Area"
-msgstr ""
+msgstr "L'enclos est plein"
 
 #, c-format
 msgid "zoo:Maximum Capacity reached %d > %s"
-msgstr ""
+msgstr "Capacité maximum est atteinte %d > %s"
 
 #, fuzzy
 msgid "ZOO_CLASSE#title"

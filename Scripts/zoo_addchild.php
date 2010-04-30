@@ -4,7 +4,7 @@
  * Add child to an Animal
  *
  * @author Anakeen 2008
- * @version $Id: zoo_addchild.php,v 1.3 2010-04-02 14:49:05 eric Exp $
+ * @version $Id: zoo_addchild.php,v 1.4 2010-04-30 13:44:07 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 
@@ -19,14 +19,14 @@ include_once("FDL/Class.Doc.php");
 
 $usage="usage  --docid=<doc identificator> --n=<number of child>";
 
-$dbaccess=$appl->GetParam("FREEDOM_DB");
+$dbaccess=$action->GetParam("FREEDOM_DB");
 if ($dbaccess == "") {
   print "Freedom Database not found : param FREEDOM_DB";
   exit;
 }
 
 $docid = $action->getArgument("docid",0); // special docid
-$n = intval($action->getArgument("n")); // 
+$n = intval($action->getArgument("n")); // number of childs
 
 if (! $n)   $action->exitError("n needed :\n $usage");  
 if ($n<0) $action->exitError("n must be greater than 0 :\n $usage");  
@@ -37,7 +37,7 @@ if ($doc->isAlive()) {
   if ($doc->fromid != $animalid) {
     $fdoc=$doc->getFamDoc();
     $action->exitError(sprintf("%s [%d] document is not an animal (it is a %s)",
-			       $doc->title,$doc->id,$fdoc->title));
+			       $doc->getTitle(),$doc->id,$fdoc->getTitle()));
   }
   
   $childs=$doc->getTValue("an_enfant");
@@ -55,7 +55,7 @@ if ($doc->isAlive()) {
     if ($err != "") $action->exitError($err);
     $anchild->refresh();
     $anchild->postModify();
-    print sprintf("%s [%d] created\n",$anchild->title,$anchild->id);
+    print sprintf("%s [%d] created\n",$anchild->getTitle(),$anchild->id);
     $childs[]=$anchild->id;		    
   }
 

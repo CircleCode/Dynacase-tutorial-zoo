@@ -3,7 +3,7 @@
  * Display sum of sales
  *
  * @author Anakeen 2008
- * @version $Id: zoo_ticketsales.php,v 1.4 2010-04-20 07:55:44 eric Exp $
+ * @version $Id: zoo_ticketsales.php,v 1.5 2010-04-30 13:44:07 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  *
@@ -16,12 +16,10 @@ include_once("FDL/Class.SearchDoc.php");
  * Display sum of sales
  * @global date Http var : date of the report
  */
-function zoo_ticketsales(&$action) {
+function zoo_ticketsales(Action &$action) {
     $date=$action->getArgument("date");
     $dbaccess=$action->getParam("FREEDOM_DB");
 
-
-   
     if (!$date) $date=Doc::getDate();
 
     $s=new SearchDoc($dbaccess,"ZOO_ENTREE");

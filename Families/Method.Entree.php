@@ -4,7 +4,7 @@
  * Ticket comportment
  *
  * @author Anakeen 2010
- * @version $Id: Method.Entree.php,v 1.3 2010-02-18 07:58:09 eric Exp $
+ * @version $Id: Method.Entree.php,v 1.4 2010-04-30 13:44:07 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  */
@@ -20,17 +20,17 @@ Class _ENTREE extends Doc {
 	 * @end-method-ignore
 	 */
 
-	function postModify() {
+	public function postModify() {
 	    $err=parent::postModify();
 	    if ($err=="") $err=$this->setValue("ent_prix",$this->getCost());
-		return $err;
+	    return $err;
 	}
 
 	/**
 	 * return cost
 	 * @return float
 	 */
-	function getCost() {
+	public function getCost() {
 		$nb_adulte=intval($this->getValue("ent_adulte"));
 		$nb_enfant=intval($this->getValue("ent_enfant"));
 		$prix_adulte=floatval($this->getParamValue("ent_prixadulte"));

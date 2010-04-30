@@ -3,7 +3,7 @@
  * Animal comportment
  *
  * @author Anakeen 2010
- * @version $Id: Method.Animal.php,v 1.5 2010-04-20 07:55:44 eric Exp $
+ * @version $Id: Method.Animal.php,v 1.6 2010-04-30 13:44:07 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  */
@@ -25,7 +25,7 @@ Class _ANIMAL extends Doc {
      */
     public function getAscendant($sexeVar) {
         include_once("FDL/Class.SearchDoc.php");
-
+	$resultat=" ";
         $s=new SearchDoc($this->dbaccess,$this->fromid);
         $s->addFilter("an_enfant ~ '\\\\y{$this->initid}\\\\y'");
         $s->slice=3;
@@ -102,7 +102,6 @@ Class _ANIMAL extends Doc {
     public function getFreeEnclos() {
         include_once("FDL/Class.SearchDoc.php");
 
-
         $s=new SearchDoc($this->dbaccess,"ZOO_ENCLOS");
         $idespece=$this->getValue("an_espece");
         $s->addFilter("en_espece ~ '\\\\y$idespece\\\\y'");
@@ -117,7 +116,6 @@ Class _ANIMAL extends Doc {
         else {
             while ($doc=$s->nextDoc()) {
                 return $doc->id; // first found
-
             }
         }
         return 0;
@@ -128,9 +126,8 @@ Class _ANIMAL extends Doc {
         include_once("FDL/Class.SearchDoc.php");
 
         $err="";
-        $this->getOldValue("an_enfant");
         $s=new SearchDoc($this->dbaccess,"ZOO_ENCLOS");
-        $s->addFilter(sprintf("en_espece ~ '\\\\y%d\\\\y'",$this->getValue("an_espece")));
+        $s->addFilter("en_espece ~ '\\\\y%d\\\\y'",$this->getValue("an_espece"));
         $s->noViewControl(); // no test view acl
         $s->setObjectReturn();
         $s->search();

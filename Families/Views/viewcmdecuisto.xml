@@ -7,7 +7,7 @@
 
 <br/><br/>
 <div style="border:solid black 1px;width:50%">
-<p>[V_US_LNAME] [V_US_FNAME]</P>
+<p>[V_US_LNAME] [V_US_FNAME]</p>
 <p>[V_US_SOCIETY]</p>
 <P>[V_US_WORKADDR] [V_US_WORKPOSTALCODE] [V_US_WORKTOWN]</P>
 </div>
