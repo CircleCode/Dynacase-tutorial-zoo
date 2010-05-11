@@ -47,7 +47,7 @@
                     console.log(d);
                     docAddTableRow({en_espece:{id:sel.options[i].value,title:sel.options[i].text,unique:true},
                                     en_comment:'coucou',
-                                    en_espprotected:(d.getValue('es_protegee')=='1')?{url:'Images/confidential.gif',id:'confidential.gif'}:{url:'Images/zoo.png',id:'zoo.png'},
+                                    en_espprotected:(d.getValue('es_protegee')=='1')?{url:'Images/pandared.png',id:'pandared.png'}:{url:'Images/pandagreen.png',id:'pandagreen.png'},
                                     en_photo:{url:d.getDisplayValue('es_photo',{url:true}),id:d.getValue('es_photo')},
                                     en_enumcolor:'c'});
                    }

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZOO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-11 08:42+0200\n"
+"POT-Creation-Date: 2010-05-11 13:22+0200\n"
 "PO-Revision-Date: 2010-05-11 08:43+0200\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: French <distrib@anakeen.com>\n"
@@ -125,12 +125,6 @@ msgstr ""
 msgid "All childs of [ADOC %d]"
 msgstr ""
 
-msgid "zoo:Capacity not set"
-msgstr ""
-
-msgid "zoo;Capacity not set"
-msgstr ""
-
 msgid "alive"
 msgstr "vivant"
 
@@ -193,6 +187,12 @@ msgstr "Pas de classe référencée"
 
 msgid "zoo:unknown class"
 msgstr "Classe inconnue"
+
+msgid "zoo:Capacity not set"
+msgstr ""
+
+msgid "zoo;Capacity not set"
+msgstr ""
 
 msgid "birthday date must be set before today"
 msgstr ""
@@ -326,6 +326,10 @@ msgid "ZOO_ESPECE#es_ordre"
 msgstr "ordre"
 
 #, fuzzy
+msgid "ZOO_ESPECE#es_photo"
+msgstr "photo"
+
+#, fuzzy
 msgid "ZOO_ESPECE#es_protegee"
 msgstr "protégée"
 
@@ -432,6 +436,10 @@ msgstr "Insérer des espèces"
 #, fuzzy
 msgid "ZOO_ENCLOS#en_espprotected"
 msgstr "protégé"
+
+#, fuzzy
+msgid "ZOO_ENCLOS#en_photo"
+msgstr "photo"
 
 #, fuzzy
 msgid "ZOO_ENCLOS#en_espece"
