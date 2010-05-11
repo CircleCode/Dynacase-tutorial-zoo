@@ -2,7 +2,6 @@
 <script type="text/javascript" src="lib/data/fdl-data.js"></script>
 <script>
         var C=null; // the main context
-                
         function searchSpecies() {
                 C=new Fdl.Context();
                 if (! C.isConnected()) {   
@@ -19,20 +18,28 @@
                                                                   right:document.getElementById('specie').value}]});
                 var dl=d.search({filter:f});
                         var content=dl.getDocuments();
+                        for (var i = sel.length - 1; i>=0; i--)  sel.remove(i);
                         for (var i in content) {
                                 var doc=content[i];
                                 if (doc && doc.isAlive()) {
                                         var o = new Option(doc.getTitle(),doc.getProperty('id'));
-                                        sel.options[sel.options.length]=o;
+                                      //  sel.options[sel.options.length]=o; 
+                                                try {
+                                         sel.add(o, null); // standards compliant; doesn't work in IE
+                                                 }
+                                                 catch(ex) {
+                                                  sel.add(o); // IE only
+                                                  }
+
                                 }
                         }
                 }
         }
                 
         function getReference() {
-           var ref=docGetFormValue('en_reference');
+           var ref=Ih.docGetFormValue('en_reference');
            
-           console.log('espèce',docGetFormValue('en_espece'));
+           console.log('espèce',Ih.docGetFormValue('en_espece'));
            return ref;
         }
         function insertDataFromSelection() {
@@ -41,15 +48,37 @@
            var ids=[];
            
            var sel=document.getElementById("resultTab");
+           
            for (var i=0;i < sel.options.length;i++) {
                   if (sel.options[i].selected){
                     var d = C.getDocument({id:sel.options[i].value, useCache:true});
-                    console.log(d);
-                    docAddTableRow({en_espece:{id:sel.options[i].value,title:sel.options[i].text,unique:true},
+                    Ih.docAddTableRow({en_espece:{id:sel.options[i].value,title:sel.options[i].text,unique:true},
                                     en_comment:'coucou',
                                     en_espprotected:(d.getValue('es_protegee')=='1')?{url:'Images/pandared.png',id:'pandared.png'}:{url:'Images/pandagreen.png',id:'pandagreen.png'},
                                     en_photo:{url:d.getDisplayValue('es_photo',{url:true}),id:d.getValue('es_photo')},
                                     en_enumcolor:'c'});
+                   }
+           } 
+        } 
+         function insertDataUsingReturnAttribute() {
+           var titles=[];
+           var icons=[];
+           var ids=[];
+           var sel=document.getElementById("resultTab");
+           if (! Ih.getReturnAttribute(0)) {
+                alert('no attribute results defined');
+                return;
+           }
+           for (var i=0;i < sel.options.length;i++) {
+                  if (sel.options[i].selected){
+                    var d = C.getDocument({id:sel.options[i].value, useCache:true});
+                    var row={};
+                    // get first result attribute : the attribute 'en_espece'
+                    row[Ih.getReturnAttribute(0)]={id:sel.options[i].value,title:sel.options[i].text,unique:true};
+                  
+                    // get second result attribute: the attribute 'en_comment'
+                    row[Ih.getReturnAttribute(1)]='a comment';
+                    Ih.docAddTableRow(row);
                    }
            } 
         }
@@ -59,7 +88,7 @@
         function setCapacity(inp,delta) {
            if (isNaN(inp.value)) inp.value=0;
            if (delta) inp.value=parseInt(inp.value)+delta;
-           docSetFormValue({en_capacite:inp.value})
+           Ih.docSetFormValue({en_capacite:inp.value})
         }
 </script>
 <h3><b>[TEXT:zoo:Species for] : [enclosname] </b></h3>
@@ -79,5 +108,7 @@
 
 <input type="button" value="[TEXT:zoo:Retrieve reference]" onclick="document.getElementById('reference').value=getReference()"></input>
 <input type="text" id="reference"/>
+<input type="button" value="[TEXT:zoo:Insert with defined return]" onclick="insertDataUsingReturnAttribute()">
+
 
 [ZONE FDL:HTMLFOOT]
