@@ -67,4 +67,16 @@ function getAddress($dbaccess,$name="") {
   }
   return $tr;
 }
+
+function zoo_searchspecies(&$action,$dbaccess,$id,$nom) {
+   // print "DB=$dbaccess, NOM=$nom ID=$id";
+    $action->lay->set("enclosname",$nom);
+    $doc=new_doc($dbaccess,$id);
+    
+    if ($doc->isAlive()) {
+        $action->lay->set("CAPACITY",$doc->getValue("en_capacite",_("zoo:Capacity not set")));
+    } else {
+        $action->lay->set("CAPACITY",_("zoo;Capacity not set"));
+    }
+}
 ?>

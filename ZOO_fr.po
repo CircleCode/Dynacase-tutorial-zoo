@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZOO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-27 10:59+0200\n"
-"PO-Revision-Date: 2010-04-28 10:46+0200\n"
+"POT-Creation-Date: 2010-05-11 08:42+0200\n"
+"PO-Revision-Date: 2010-05-11 08:43+0200\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: French <distrib@anakeen.com>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,25 @@ msgstr "Qualité"
 msgid "Red"
 msgstr "Rouge"
 
-msgid "Day Sales"
+msgid "Special Species"
+msgstr "Espèces spéciales"
+
+msgid "zoo:Species for"
+msgstr "Espèces pour"
+
+msgid "zoo:Search species"
+msgstr "Recherche d'espèces"
+
+msgid "Insert into list !"
+msgstr "Insérer dans la liste !"
+
+msgid "zoo:Change capacity"
+msgstr "Changer la capacité"
+
+msgid "zoo:Retrieve reference"
+msgstr "Récupérer la référence"
+
+msgid "zoo:Day Sales"
 msgstr ""
 
 msgid "Date"
@@ -105,6 +123,12 @@ msgstr ""
 
 #, c-format
 msgid "All childs of [ADOC %d]"
+msgstr ""
+
+msgid "zoo:Capacity not set"
+msgstr ""
+
+msgid "zoo;Capacity not set"
 msgstr ""
 
 msgid "alive"
@@ -258,8 +282,8 @@ msgid "zoo:Full Area"
 msgstr "L'enclos est plein"
 
 #, c-format
-msgid "zoo:Maximum Capacity reached %d > %s"
-msgstr "Capacité maximum est atteinte %d > %s"
+msgid "zoo:Maximum Capacity reached %d > %d"
+msgstr ""
 
 #, fuzzy
 msgid "ZOO_CLASSE#title"
@@ -400,6 +424,14 @@ msgstr "Préciser la référence"
 #, fuzzy
 msgid "ZOO_ENCLOS#en_t_especes"
 msgstr "liste espèce"
+
+#, fuzzy
+msgid "ZOO_ENCLOS#en_t_especes#ltitle"
+msgstr "Insérer des espèces"
+
+#, fuzzy
+msgid "ZOO_ENCLOS#en_espprotected"
+msgstr "protégé"
 
 #, fuzzy
 msgid "ZOO_ENCLOS#en_espece"
@@ -915,6 +947,13 @@ msgstr "Lions HTML"
 #, fuzzy
 msgid "ZOO_CUISINIER#us_lion_odt"
 msgstr "Lions Odt"
+
+#, fuzzy
+msgid "ZOO_CUISINIER#us_lion_pdf"
+msgstr "Lions Pdf"
+
+#~ msgid "zoo:Maximum Capacity reached %d > %s"
+#~ msgstr "Capacité maximum est atteinte %d > %s"
 
 #~ msgid "Zoo_Veterinary"
 #~ msgstr "Vétérinaire"

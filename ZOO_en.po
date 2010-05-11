@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZOO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-27 10:59+0200\n"
+"POT-Creation-Date: 2010-05-11 08:42+0200\n"
 "PO-Revision-Date: 2008-10-14 11:32+0200\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: English <distrib@anakeen.com>\n"
@@ -22,7 +22,25 @@ msgstr ""
 msgid "Red"
 msgstr ""
 
-msgid "Day Sales"
+msgid "Special Species"
+msgstr ""
+
+msgid "zoo:Species for"
+msgstr ""
+
+msgid "zoo:Search species"
+msgstr ""
+
+msgid "Insert into list !"
+msgstr ""
+
+msgid "zoo:Change capacity"
+msgstr ""
+
+msgid "zoo:Retrieve reference"
+msgstr ""
+
+msgid "zoo:Day Sales"
 msgstr ""
 
 msgid "Date"
@@ -104,6 +122,12 @@ msgstr ""
 
 #, c-format
 msgid "All childs of [ADOC %d]"
+msgstr ""
+
+msgid "zoo:Capacity not set"
+msgstr ""
+
+msgid "zoo;Capacity not set"
 msgstr ""
 
 #, fuzzy
@@ -258,7 +282,7 @@ msgid "zoo:Full Area"
 msgstr ""
 
 #, c-format
-msgid "zoo:Maximum Capacity reached %d > %s"
+msgid "zoo:Maximum Capacity reached %d > %d"
 msgstr ""
 
 #, fuzzy
@@ -400,6 +424,14 @@ msgstr "Préciser la référence"
 #, fuzzy
 msgid "ZOO_ENCLOS#en_t_especes"
 msgstr "liste espèce"
+
+#, fuzzy
+msgid "ZOO_ENCLOS#en_t_especes#ltitle"
+msgstr "Insérer des espèces"
+
+#, fuzzy
+msgid "ZOO_ENCLOS#en_espprotected"
+msgstr "protégé"
 
 #, fuzzy
 msgid "ZOO_ENCLOS#en_espece"
@@ -915,6 +947,10 @@ msgstr "Lions HTML"
 #, fuzzy
 msgid "ZOO_CUISINIER#us_lion_odt"
 msgstr "Lions Odt"
+
+#, fuzzy
+msgid "ZOO_CUISINIER#us_lion_pdf"
+msgstr "Lions Pdf"
 
 #~ msgid "initialised"
 #~ msgstr "initialised"

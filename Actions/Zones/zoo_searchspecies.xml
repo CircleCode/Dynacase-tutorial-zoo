@@ -1,0 +1,83 @@
+[ZONE FDL:HTMLHEAD?title=[TEXT:Special Species]]
+<script type="text/javascript" src="lib/data/fdl-data.js"></script>
+<script>
+        var C=null; // the main context
+                
+        function searchSpecies() {
+                C=new Fdl.Context();
+                if (! C.isConnected()) {   
+                        alert('error connect:'+C.getLastErrorMessage());
+                
+                }
+                
+                if (C){
+                        var sel = document.getElementById("resultTab");
+                        var d = C.getSearchDocument();
+                        var f=new Fdl.DocumentFilter({family:'ZOO_ESPECE',
+                                                      criteria:[{operator:'~*',
+                                                                 left:'title',
+                                                                  right:document.getElementById('specie').value}]});
+                var dl=d.search({filter:f});
+                        var content=dl.getDocuments();
+                        for (var i in content) {
+                                var doc=content[i];
+                                if (doc && doc.isAlive()) {
+                                        var o = new Option(doc.getTitle(),doc.getProperty('id'));
+                                        sel.options[sel.options.length]=o;
+                                }
+                        }
+                }
+        }
+                
+        function getReference() {
+           var ref=docGetFormValue('en_reference');
+           
+           console.log('espèce',docGetFormValue('en_espece'));
+           return ref;
+        }
+        function insertDataFromSelection() {
+           var titles=[];
+           var icons=[];
+           var ids=[];
+           
+           var sel=document.getElementById("resultTab");
+           for (var i=0;i < sel.options.length;i++) {
+                  if (sel.options[i].selected){
+                    var d = C.getDocument({id:sel.options[i].value, useCache:true});
+                    console.log(d);
+                    docAddTableRow({en_espece:{id:sel.options[i].value,title:sel.options[i].text,unique:true},
+                                    en_comment:'coucou',
+                                    en_espprotected:(d.getValue('es_protegee')=='1')?{url:'Images/confidential.gif',id:'confidential.gif'}:{url:'Images/zoo.png',id:'zoo.png'},
+                                    en_photo:{url:d.getDisplayValue('es_photo',{url:true}),id:d.getValue('es_photo')},
+                                    en_enumcolor:'c'});
+                   }
+           } 
+        }
+        addEvent(window,"load",autoWresize);
+        addEvent(window,"load",searchSpecies);
+        
+        function setCapacity(inp,delta) {
+           if (isNaN(inp.value)) inp.value=0;
+           if (delta) inp.value=parseInt(inp.value)+delta;
+           docSetFormValue({en_capacite:inp.value})
+        }
+</script>
+<h3><b>[TEXT:zoo:Species for] : [enclosname] </b></h3>
+<input type="text" id="specie"/>
+<input type="button" value="[TEXT:zoo:Search species]" onclick="searchSpecies()"></input> 
+<br/>
+<select id="resultTab" multiple="multiple">
+</select>
+<br/>
+
+<input type="button" value="[TEXT:Insert into list !]" onclick="insertDataFromSelection()"></input> 
+<br/>
+<input id="capacity" value="[CAPACITY]"/> 
+<input type="button" value="+" onclick="setCapacity(document.getElementById('capacity'),+1)"></input>
+<input type="button" value="-" onclick="setCapacity(document.getElementById('capacity'),-1)"></input>
+<input type="button" value="[TEXT:zoo:Change capacity]" onclick="setCapacity(document.getElementById('capacity'),null)"></input>
+
+<input type="button" value="[TEXT:zoo:Retrieve reference]" onclick="document.getElementById('reference').value=getReference()"></input>
+<input type="text" id="reference"/>
+
+[ZONE FDL:HTMLFOOT]
