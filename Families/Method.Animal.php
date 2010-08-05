@@ -3,7 +3,7 @@
  * Animal comportment
  *
  * @author Anakeen 2010
- * @version $Id: Method.Animal.php,v 1.6 2010-04-30 13:44:07 eric Exp $
+ * @version $Id: Method.Animal.php,v 1.7 2010-08-05 07:14:21 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  */
@@ -86,6 +86,7 @@ Class _ANIMAL extends Doc {
      * constraint to verify entrance date and birth date
      */
     public function validatePastDate($date) {
+        if (is_array($date)) return true;
         $t1=StringDateToUnixTs($date);
         $sug=array();
         $err="";
@@ -164,7 +165,7 @@ Class _ANIMAL extends Doc {
         if (count($childs) >0) {
             include_once("FDL/Class.SearchDoc.php");
             $s=new SearchDoc($this->dbaccess,"ZOO_ANIMAL");
-            $s->addFilter(getSqlCond($childs,"initid",true)); // get all animals from ids
+            $s->addFilter($s->sqlCond($childs,"initid",true)); // get all animals from ids
             $s->noViewControl(); // no test view acl
             $s->setObjectReturn();
             $s->search();

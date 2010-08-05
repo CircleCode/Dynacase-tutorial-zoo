@@ -34,6 +34,7 @@
                                 }
                         }
                 }
+                autoWresize();
         }
                 
         function getReference() {
@@ -91,6 +92,7 @@
            Ih.docSetFormValue({en_capacite:inp.value})
         }
 </script>
+
 <h3><b>[TEXT:zoo:Species for] : [enclosname] </b></h3>
 <input type="text" id="specie"/>
 <input type="button" value="[TEXT:zoo:Search species]" onclick="searchSpecies()"></input> 

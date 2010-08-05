@@ -4,7 +4,7 @@
  * Zone View animal photo
  *
  * @author Anakeen 2008
- * @version $Id: aphoto.php,v 1.3 2010-04-30 13:44:07 eric Exp $
+ * @version $Id: aphoto.php,v 1.4 2010-08-05 07:14:21 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage ZOO
@@ -23,7 +23,7 @@ function aphoto(Action &$action) {
 
   $action->lay->set("anid",$idanimal);
   $action->lay->set("photo",$photo);
-  $action->lay->set("aname",$doc->getTitle());
+  $action->lay->set("aname",$doc->getHTMLTitle());
   }
 
 ?>

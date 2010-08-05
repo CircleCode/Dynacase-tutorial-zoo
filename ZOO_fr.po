@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZOO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-11 13:22+0200\n"
-"PO-Revision-Date: 2010-05-11 08:43+0200\n"
+"POT-Creation-Date: 2010-06-10 12:01+0200\n"
+"PO-Revision-Date: 2010-05-12 14:05+0200\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: French <distrib@anakeen.com>\n"
 "MIME-Version: 1.0\n"
@@ -41,6 +41,9 @@ msgstr "Changer la capacité"
 msgid "zoo:Retrieve reference"
 msgstr "Récupérer la référence"
 
+msgid "zoo:Insert with defined return"
+msgstr ""
+
 msgid "zoo:Day Sales"
 msgstr ""
 
@@ -49,6 +52,9 @@ msgstr ""
 
 msgid "Has been refused by"
 msgstr ""
+
+msgid "zoo:The tatoo is important"
+msgstr "La tatouage est important"
 
 msgid "Zoo:Today"
 msgstr "Aujourd'hui"
@@ -64,6 +70,15 @@ msgstr "Classe"
 
 msgid "Zoo:Veterinary"
 msgstr "Vétérinaire"
+
+msgid "Set a beautifull name for this animal"
+msgstr ""
+
+msgid "A tatoo"
+msgstr ""
+
+msgid "zoo:It is a beautifull name for this animal"
+msgstr "C'est un joli nom pour cet animal"
 
 msgid "Name of the zoo"
 msgstr ""
@@ -672,6 +687,10 @@ msgstr "Tickets"
 #, fuzzy
 msgid "ZOO_ENTREE#ent_daysales"
 msgstr "Recette"
+
+#, fuzzy
+msgid "ZOO_ENTREE#ent_todaysales"
+msgstr "Recette du jour"
 
 #, fuzzy
 msgid "ZOO_ENTREE#ent_fr_prix"
