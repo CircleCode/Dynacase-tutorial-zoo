@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: ZOO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-10 12:01+0200\n"
-"PO-Revision-Date: 2010-05-12 14:05+0200\n"
+"PO-Revision-Date: 2010-08-31 12:30+0200\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: French <distrib@anakeen.com>\n"
 "MIME-Version: 1.0\n"
@@ -210,7 +210,7 @@ msgid "zoo;Capacity not set"
 msgstr ""
 
 msgid "birthday date must be set before today"
-msgstr ""
+msgstr "La date de naissance doit être avant aujourd'hui"
 
 msgid "zoo_initialised"
 msgstr "Initialisé"
@@ -298,7 +298,7 @@ msgstr "L'enclos est plein"
 
 #, c-format
 msgid "zoo:Maximum Capacity reached %d > %d"
-msgstr ""
+msgstr "La capacité a été dépassée %d > %d"
 
 #, fuzzy
 msgid "ZOO_CLASSE#title"

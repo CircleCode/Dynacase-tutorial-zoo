@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <animals count="[anicount]">
-[BLOCK ANIMALS]<animal id="[id]" [IF an_tatouage]tatoo="[an_tatouage]"[ENDIF an_tatouage]><name>[an_nom]</name><species>[an_espece_title]</species><class>[an_classe_title]</class></animal>
+[BLOCK ANIMALS]<animal id="[id]" ><name>[an_nom]</name><specie>[an_espece_title]</specie><class>[an_classe_title]</class>[IF an_tatouage]<tatoo>[an_tatouage]</tatoo>[ENDIF an_tatouage]</animal>
 [ENDBLOCK ANIMALS]
 </animals>

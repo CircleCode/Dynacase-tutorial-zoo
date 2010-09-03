@@ -2,7 +2,7 @@
 
 /**
  * return order compatible with class
- * @param string $class scientific name of classes
+ * @param string $class identifiant of  classes
  * @param string $name optionnal filter to select order
  */
 function getOrdre($dbaccess,$class,$name="") {
@@ -57,7 +57,7 @@ function getAddress($dbaccess,$name="") {
 			$doc->getValue("us_workaddr"),
 			$doc->getValue("us_workpostalcode"),
 			$doc->getValue("us_worktown"));
-    $tr[] = array($doc->getTitle() . ' <i>'.$doc->getValue("us_society").'</i>',
+    $tr[] = array($doc->getTitle() . ' ('.$doc->getValue("us_society").')',
 		  $doc->id,
 		  $doc->getTitle(),
 		  $postalcode,

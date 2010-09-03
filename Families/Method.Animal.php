@@ -3,7 +3,7 @@
  * Animal comportment
  *
  * @author Anakeen 2010
- * @version $Id: Method.Animal.php,v 1.7 2010-08-05 07:14:21 eric Exp $
+ * @version $Id: Method.Animal.php,v 1.8 2010-09-03 07:07:12 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  */
@@ -33,7 +33,7 @@ Class _ANIMAL extends Doc {
         if (count($tdoc)==0) return " ";
         foreach($tdoc as $k=>$v) {
             $sexe=getv($v,"an_sexe");
-            if ($sexe==$sexeVar) $resultat= $v["id"];
+            if ($sexe==$sexeVar) $resultat= $v["initid"];
         }
 
         return  $resultat;
@@ -47,10 +47,10 @@ Class _ANIMAL extends Doc {
         $s->addFilter("an_sexe = '%s'",$sexeVar);
 	$s->setObjectReturn();
         $s->slice=1;
-        $tdoc=$s->search();
-        if (count($tdoc)==0) return " ";
+        $s->search();
+        if ($s->count()==0) return " ";
 	$ani=$s->nextDoc();	       
-        return  $ani->id;
+        return  $ani->initid;
     }
     public function postModify() {
         return $this->refreshChilds();
@@ -75,7 +75,7 @@ Class _ANIMAL extends Doc {
             $enclos=new_doc($this->dbaccess, $enclosId);
             if ($enclos->isAlive()) {
                 $animals=$enclos->getTValue("en_animaux");
-                $animals[]=$this->id;
+                array_push($animals, $this->id);
                 $err=$enclos->setValue("en_animaux",$animals);
                 if ($err=="") $err=$enclos->modify();
             }

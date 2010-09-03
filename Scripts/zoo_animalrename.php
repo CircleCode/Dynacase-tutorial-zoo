@@ -4,7 +4,7 @@
  * Rename Animal
  *
  * @author Anakeen 2008
- * @version $Id: zoo_animalrename.php,v 1.4 2010-04-02 14:49:05 eric Exp $
+ * @version $Id: zoo_animalrename.php,v 1.5 2010-09-03 07:07:12 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 
@@ -21,8 +21,7 @@ $usage="usage  --docid=<doc identificator> --newname=<new animal name>";
 
 $dbaccess=$action->GetParam("FREEDOM_DB");
 if ($dbaccess == "") {
-  print "Freedom Database not found : param FREEDOM_DB";
-  exit;
+  $action->exitError( "Freedom Database not found : param FREEDOM_DB");
 }
 
 $docid = $action->getArgument("docid",0); // special docid

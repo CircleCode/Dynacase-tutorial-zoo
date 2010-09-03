@@ -3,7 +3,7 @@
  * Display sum of sales
  *
  * @author Anakeen 2008
- * @version $Id: zoo_ticketsales.php,v 1.5 2010-04-30 13:44:07 eric Exp $
+ * @version $Id: zoo_ticketsales.php,v 1.6 2010-09-03 07:07:12 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  *
@@ -25,7 +25,7 @@ function zoo_ticketsales(Action &$action) {
     $s=new SearchDoc($dbaccess,"ZOO_ENTREE");
     $s->addFilter("ent_date='%s'",$date);
     $s->setObjectReturn();
-    $tdoc=$s->search();
+    $s->search();
 
 
     $pes=0;

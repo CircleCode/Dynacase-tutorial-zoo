@@ -3,7 +3,7 @@
  * Adoption comportment
  *
  * @author Anakeen 2010
- * @version $Id: Method.Adoption.php,v 1.2 2010-04-02 14:49:04 eric Exp $
+ * @version $Id: Method.Adoption.php,v 1.3 2010-09-03 07:07:12 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  */
@@ -53,7 +53,7 @@ function de_mail_transmitted() {
   include_once("FDL/Class.SearchDoc.php");  
   
   $s=new SearchDoc($this->dbaccess,"ZOO_ANIMAL");
-  $s->addFilter(sprintf("an_espece = '%d'",$this->getValue("de_idsepece")));
+  $s->addFilter(sprintf("an_espece = '%d'",$this->getValue("de_idespece")));
   $t=$s->search();
 
   $this->lay->setBlockData("ANIMALS",$t);		  
