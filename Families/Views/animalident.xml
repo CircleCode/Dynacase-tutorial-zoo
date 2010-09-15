@@ -1,0 +1,4 @@
+<p style="color:green">[TEXT:Set a beautifull name for this animal]</p>
+[V_AN_NOM]
+<p style="color:orange">[TEXT:A tatoo]</p>
+[V_AN_TATOUAGE]
