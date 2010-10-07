@@ -34,7 +34,7 @@
                                 }
                         }
                 }
-                autoWresize();
+                //autoWresize();
         }
                 
         function getReference() {
@@ -83,7 +83,7 @@
                    }
            } 
         }
-        addEvent(window,"load",autoWresize);
+        //addEvent(window,"load",autoWresize);
         addEvent(window,"load",searchSpecies);
         
         function setCapacity(inp,delta) {
