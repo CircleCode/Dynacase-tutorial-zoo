@@ -3,16 +3,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZOO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-10 12:01+0200\n"
-"PO-Revision-Date: 2010-08-31 12:30+0200\n"
+"POT-Creation-Date: 2010-11-19 15:19+0100\n"
+"PO-Revision-Date: 2010-11-18 12:11+0100\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: French <distrib@anakeen.com>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Entrance"
-msgstr "Entrée"
+msgid "Standard HTML"
+msgstr ""
+
+msgid "New interface"
+msgstr ""
 
 msgid "Colors"
 msgstr "Couleurs"
@@ -56,6 +60,9 @@ msgstr ""
 msgid "zoo:The tatoo is important"
 msgstr "La tatouage est important"
 
+msgid "zoo:It is a beautifull name for this animal"
+msgstr "C'est un joli nom pour cet animal"
+
 msgid "Zoo:Today"
 msgstr "Aujourd'hui"
 
@@ -77,8 +84,8 @@ msgstr ""
 msgid "A tatoo"
 msgstr ""
 
-msgid "zoo:It is a beautifull name for this animal"
-msgstr "C'est un joli nom pour cet animal"
+msgid "Entrance"
+msgstr "Entrée"
 
 msgid "Name of the zoo"
 msgstr ""
@@ -197,18 +204,6 @@ msgstr "Adulte"
 msgid "Child"
 msgstr "Enfant"
 
-msgid "zoo:no class referenced"
-msgstr "Pas de classe référencée"
-
-msgid "zoo:unknown class"
-msgstr "Classe inconnue"
-
-msgid "zoo:Capacity not set"
-msgstr ""
-
-msgid "zoo;Capacity not set"
-msgstr ""
-
 msgid "birthday date must be set before today"
 msgstr "La date de naissance doit être avant aujourd'hui"
 
@@ -222,7 +217,7 @@ msgid "zoo_accepted"
 msgstr "Accepté"
 
 msgid "zoo_refused"
-msgstr "Réfusé"
+msgstr "Refusé"
 
 msgid "zoo_realised"
 msgstr "Réalisé"
@@ -300,9 +295,23 @@ msgstr "L'enclos est plein"
 msgid "zoo:Maximum Capacity reached %d > %d"
 msgstr "La capacité a été dépassée %d > %d"
 
-#, fuzzy
+msgid "zoo:no class referenced"
+msgstr "Pas de classe référencée"
+
+msgid "zoo:unknown class"
+msgstr "Classe inconnue"
+
+msgid "zoo:Capacity not set"
+msgstr ""
+
+msgid "zoo;Capacity not set"
+msgstr ""
+
+msgid "zoo_adoption accepted"
+msgstr "Acceptation"
+
 msgid "ZOO_CLASSE#title"
-msgstr "classe"
+msgstr "super classe"
 
 #, fuzzy
 msgid "ZOO_CLASSE#cl_identification"
@@ -705,6 +714,18 @@ msgid "ZOO_ENTREE#ent_prixadulte"
 msgstr "prix adulte"
 
 #, fuzzy
+msgid "ZOO_ENTREE#ent_enum1"
+msgstr "énum un"
+
+#, fuzzy
+msgid "ZOO_ENTREE#ent_enum1#1"
+msgstr "Un"
+
+#, fuzzy
+msgid "ZOO_ENTREE#ent_enum1#2"
+msgstr "deux"
+
+#, fuzzy
 msgid "ZOO_DEMANDEADOPTION#title"
 msgstr "demande adoption"
 
@@ -725,16 +746,8 @@ msgid "ZOO_DEMANDEADOPTION#de_idredac"
 msgstr "rédacteur id"
 
 #, fuzzy
-msgid "ZOO_DEMANDEADOPTION#de_redac"
-msgstr "rédacteur"
-
-#, fuzzy
 msgid "ZOO_DEMANDEADOPTION#de_iddemand"
 msgstr "demandeur id"
-
-#, fuzzy
-msgid "ZOO_DEMANDEADOPTION#de_demand"
-msgstr "demandeur"
 
 #, fuzzy
 msgid "ZOO_DEMANDEADOPTION#de_postaladdress"
@@ -889,6 +902,14 @@ msgid "ZOO_WDEMANDEADOPTION#wad_mailcurrent"
 msgstr "Espèce commune"
 
 #, fuzzy
+msgid "ZOO_WDEMANDEADOPTION#wad_pfile"
+msgstr "fichier param"
+
+#, fuzzy
+msgid "ZOO_WDEMANDEADOPTION#wad_dmul"
+msgstr "mul"
+
+#, fuzzy
 msgid "ZOO_WANIMAL#title"
 msgstr "Cycle Animal"
 
@@ -979,17 +1000,10 @@ msgstr "Lions Odt"
 msgid "ZOO_CUISINIER#us_lion_pdf"
 msgstr "Lions Pdf"
 
-#~ msgid "zoo:Maximum Capacity reached %d > %s"
-#~ msgstr "Capacité maximum est atteinte %d > %s"
+#, fuzzy
+#~ msgid "ZOO_DEMANDEADOPTION#de_redac"
+#~ msgstr "rédacteur"
 
-#~ msgid "Zoo_Veterinary"
-#~ msgstr "Vétérinaire"
-
-#~ msgid "Today"
-#~ msgstr "Aujourd'hui"
-
-#~ msgid "The animal"
-#~ msgstr "L'animal"
-
-#~ msgid "no enclos"
-#~ msgstr "Pas d'enclos disponible"
+#, fuzzy
+#~ msgid "ZOO_DEMANDEADOPTION#de_demand"
+#~ msgstr "demandeur"

@@ -3,7 +3,7 @@
  * Animal comportment
  *
  * @author Anakeen 2010
- * @version $Id: Method.Animal.php,v 1.8 2010-09-03 07:07:12 eric Exp $
+ * @version $Id: Method.Animal.php,v 1.9 2011-02-01 16:40:08 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  */
@@ -26,8 +26,8 @@ Class _ANIMAL extends Doc {
     public function getAscendant($sexeVar) {
         include_once("FDL/Class.SearchDoc.php");
 	$resultat=" ";
-        $s=new SearchDoc($this->dbaccess,$this->fromid);
-        $s->addFilter("an_enfant ~ '\\\\y{$this->initid}\\\\y'");
+        $s=new SearchDoc($this->dbaccess,$this->getProperty('fromid'));
+        $s->addFilter("an_enfant ~ '\\\\y%d\\\\y'",$this->getProperty('initid'));
         $s->slice=3;
         $tdoc=$s->search();
         if (count($tdoc)==0) return " ";
@@ -42,15 +42,15 @@ Class _ANIMAL extends Doc {
     public function getAscendant2($sexeVar) {
         include_once("FDL/Class.SearchDoc.php");
 
-        $s=new SearchDoc($this->dbaccess,$this->fromid);
-        $s->addFilter("an_enfant ~ '\\\\y{$this->initid}\\\\y'");
+        $s=new SearchDoc($this->dbaccess,$this->getProperty('fromid'));
+        $s->addFilter("an_enfant ~ '\\\\y%d\\\\y'",$this->getProperty('initid'));
         $s->addFilter("an_sexe = '%s'",$sexeVar);
 	$s->setObjectReturn();
         $s->slice=1;
         $s->search();
         if ($s->count()==0) return " ";
 	$ani=$s->nextDoc();	       
-        return  $ani->initid;
+        return  $ani->getProperty('initid');
     }
     public function postModify() {
         return $this->refreshChilds();
@@ -105,7 +105,7 @@ Class _ANIMAL extends Doc {
 
         $s=new SearchDoc($this->dbaccess,"ZOO_ENCLOS");
         $idespece=$this->getValue("an_espece");
-        $s->addFilter("en_espece ~ '\\\\y$idespece\\\\y'");
+        $s->addFilter("en_espece ~ '\\\\y%d\\\\y'",$idespece);
         $s->addFilter("en_nbre < en_capacite");
         $s->noViewControl(); // no test view acl
         $s->setObjectReturn();
@@ -115,8 +115,8 @@ Class _ANIMAL extends Doc {
 
         if ($nbdoc==0) $err=_("zoo:no enclos");
         else {
-            while ($doc=$s->nextDoc()) {
-                return $doc->id; // first found
+            while ($enclos=$s->nextDoc()) {
+                return $enclos->getProperty('initid'); // first found
             }
         }
         return 0;
@@ -137,8 +137,8 @@ Class _ANIMAL extends Doc {
 
         if ($nbdoc==0) $err=_("zoo:no enclos for this species");
         else {
-            while ($doc=$s->nextDoc()) {
-                $err=$doc->detectMaxCapacity();
+            while ($enclos=$s->nextDoc()) {
+                $err=$enclos->detectMaxCapacity();
                 if ($err=="") {
                     break; // first found
                 }

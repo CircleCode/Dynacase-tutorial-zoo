@@ -3,7 +3,7 @@
  * Display sum of sales
  *
  * @author Anakeen 2008
- * @version $Id: zoo_ticketsales.php,v 1.6 2010-09-03 07:07:12 eric Exp $
+ * @version $Id: zoo_ticketsales.php,v 1.7 2011-02-01 16:40:08 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  *
@@ -58,7 +58,7 @@ function zoo_ticketsales(Action &$action) {
     $action->lay->set("date",$date);
 }
 
-function zoo_xmlticketsales(&$action) {
+function zoo_xmlticketsales(Action &$action) {
     header('Content-type: text/xml; charset=utf-8');
     zoo_ticketsales($action);
 }

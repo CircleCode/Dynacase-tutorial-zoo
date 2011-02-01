@@ -3,7 +3,7 @@
  * Gate comportment
  *
  * @author Anakeen 2010
- * @version $Id: Method.Enclos.php,v 1.4 2010-04-30 13:44:07 eric Exp $
+ * @version $Id: Method.Enclos.php,v 1.5 2011-02-01 16:40:08 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  */
@@ -30,7 +30,7 @@ Class _ENCLOS extends Doc {
 	 * verify capacity
 	 * @return string error message if maximum capacity reached
 	 */
-	function detectMaxCapacity() {
+	public function detectMaxCapacity() {
 		$nb=$this->getNbreAnimaux();
 		if ($nb == intval($this->getValue("en_capacite"))) return _("zoo:Full Area");
 		elseif ($nb > intval($this->getValue("en_capacite"))) return (sprintf(_("zoo:Maximum Capacity reached %d > %d"),$nb,intval($this->getValue("en_capacite"))));
@@ -40,7 +40,7 @@ Class _ENCLOS extends Doc {
 	 * return count of animals
 	 * @return int
 	 */
-	function getNbreAnimaux()  {
+	public function getNbreAnimaux()  {
 		return count($this->getTValue("en_animaux"));
 	}
 
@@ -52,7 +52,7 @@ Class _ENCLOS extends Doc {
 		$this->viewdefaultcard($target,$ulink,$abstract);
 		 
 		$anidT=$this->getTValue("en_animaux");
-
+		$anid=array();
 		foreach ($anidT as $cle=>$val) {
 			$anid[]=array("anid"=>$val);
 		}
@@ -60,6 +60,16 @@ Class _ENCLOS extends Doc {
 		$this->lay->setBlockData("PHOTO",$anid);
 	}
 
+	
+	function enclos($target="_self",$ulink=true,$abstract=false ) {
+	  //$this->viewdefaultcard($target,$ulink,$abstract);
+	  $t[] = array( "V_VALEUR" => "1",
+                        "V_ISTEST" => true);
+	  $t[] = array( "V_VALEUR" => "2",
+                        "V_ISTEST" => false);
+	  $this->lay->set("TODAY",$this->getDate());
+	  $this->lay->setBlockData("",$t);
+	}
 	/**
 	 * @begin-method-ignore
 	 * this part will be deleted when construct document class until end-method-ignore

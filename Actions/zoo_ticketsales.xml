@@ -13,4 +13,5 @@
 
 <tfoot style="background-color:[COLOR_C2]"><tr><td> [nbenfants] </td><td>
 [nbadultes] </td><td> [prixenfants] </td><td>[prixadultes] </td><td style="text-align:right"><b> [total]&euro;</b></td></tr></tfoot>
-</table>[ZONE FDL:HTMLFOOT]
+</table>
+[ZONE FDL:HTMLFOOT]

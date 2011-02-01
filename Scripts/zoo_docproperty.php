@@ -4,7 +4,7 @@
  * View property
  *
  * @author Anakeen 2008
- * @version $Id: zoo_docproperty.php,v 1.4 2010-04-30 13:44:07 eric Exp $
+ * @version $Id: zoo_docproperty.php,v 1.5 2011-02-01 16:40:08 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 
@@ -19,9 +19,8 @@ include_once("FDL/Class.Doc.php");
 
 $usage="usage  --docid=<doc identificator>";
 $dbaccess=$action->getParam("FREEDOM_DB");
-if ($dbaccess == "") {
-  print "Freedom Database not found : param FREEDOM_DB";
-  exit;
+if ($dbaccess == "") {   
+  $action->exitError( "Freedom Database not found : param FREEDOM_DB");
 }
 $docid = $action->getArgument("docid",9);
 $doc=new_doc($dbaccess,$docid);

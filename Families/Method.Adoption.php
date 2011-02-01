@@ -3,7 +3,7 @@
  * Adoption comportment
  *
  * @author Anakeen 2010
- * @version $Id: Method.Adoption.php,v 1.3 2010-09-03 07:07:12 eric Exp $
+ * @version $Id: Method.Adoption.php,v 1.4 2011-02-01 16:40:08 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  */
@@ -39,9 +39,9 @@ function setReference() {
  * constraint to verify entrance date and birth date
  */
 function verifyDate($date) {
-  $t1=FrenchDateToUnixTs($date);
+  $t1=stringDateToJD($date);
   
-  if ($t1 > time()) $err=_("birthday date must be set before today");
+  if ($t1 > stringDateToJD($this->getDate())) $err=_("birthday date must be set before today");
   if ($err!="") $sug[]=$this->getDate();
   return array("err"=>$err,
 	       "sug"=>$sug);

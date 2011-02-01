@@ -58,7 +58,7 @@ function getAddress($dbaccess,$name="") {
 			$doc->getValue("us_workpostalcode"),
 			$doc->getValue("us_worktown"));
     $tr[] = array($doc->getTitle() . ' ('.$doc->getValue("us_society").')',
-		  $doc->id,
+		  $doc->getProperty('initid'),
 		  $doc->getTitle(),
 		  $postalcode,
 		  $phone,

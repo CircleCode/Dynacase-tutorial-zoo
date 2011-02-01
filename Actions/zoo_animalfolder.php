@@ -3,7 +3,7 @@
  * Create or update animal folder
  *
  * @author Anakeen 2008
- * @version $Id: zoo_animalfolder.php,v 1.5 2010-04-30 13:44:07 eric Exp $
+ * @version $Id: zoo_animalfolder.php,v 1.6 2011-02-01 16:40:08 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  *
@@ -20,7 +20,7 @@ function zoo_animalfolder(Action &$action) {
     $id=$action->getArgument("id");
     $dbaccess=$action->getParam("FREEDOM_DB");
 
-    $doc=new_doc($dbaccess, $id, true);
+    $doc=new_Doc($dbaccess, $id, true);
     if ($doc->isAlive()) {
 
         if ($doc->fromname != "ZOO_ANIMAL") {

@@ -4,7 +4,7 @@
  * Count Animal by Classe
  *
  * @author Anakeen 2008
- * @version $Id: zoo_countanimal.php,v 1.6 2010-04-30 13:44:07 eric Exp $
+ * @version $Id: zoo_countanimal.php,v 1.7 2011-02-01 16:40:08 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 
@@ -53,9 +53,9 @@ print sprintf("Classe %s :",$docclass->getTitle());
 
 $s=new SearchDoc($dbaccess,"ZOO_ANIMAL");
 $s->setObjectReturn();
-$s->addFilter("an_classe='%d'",$docclass->id);
+$s->addFilter("an_classe='%d'",$docclass->getProperty('initid'));
 $s->search();
 
-print sprintf("%d animals found.\n",$s->count());
+printf("%d animals found.\n",$s->count());
 
 ?>

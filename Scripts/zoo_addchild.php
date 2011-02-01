@@ -4,7 +4,7 @@
  * Add child to an Animal
  *
  * @author Anakeen 2008
- * @version $Id: zoo_addchild.php,v 1.4 2010-04-30 13:44:07 eric Exp $
+ * @version $Id: zoo_addchild.php,v 1.5 2011-02-01 16:40:08 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package freedom-zoo
  * 
@@ -55,8 +55,8 @@ if ($doc->isAlive()) {
     if ($err != "") $action->exitError($err);
     $anchild->refresh();
     $anchild->postModify();
-    print sprintf("%s [%d] created\n",$anchild->getTitle(),$anchild->id);
-    $childs[]=$anchild->id;		    
+    printf("%s [%d] created\n",$anchild->getTitle(),$anchild->id);
+    $childs[]=$anchild->getProperty('initid')';		    
   }
 
   if ($err != "") $action->exitError($err);

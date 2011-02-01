@@ -6,7 +6,7 @@
 #   as published by the Free Software Foundation; either version
 #   2 of the License, or (at your option) any later version.
 #
-AC_REVISION($Id: configure.in,v 1.1 2010-01-15 15:15:38 eric Exp $)
+AC_REVISION($Id: configure.in,v 1.2 2011-02-01 16:40:07 eric Exp $)
 dnl
 dnl Process this file with autoconf to produce a configure script.
 dnl
@@ -17,7 +17,7 @@ VERSION=`cat VERSION`
 AC_SUBST(RELEASE)
 RELEASE=`cat RELEASE`
 AC_SUBST(PACKAGE)
-PACKAGE=freedom-zoo
+PACKAGE=dynacase-zoo
 AC_SUBST(APPNAME)
 APPNAME=ZOO
 
