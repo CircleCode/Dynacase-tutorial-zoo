@@ -5,7 +5,8 @@
 
 <img src="[IMG:accueil.jpg]"><br/>
 <a style="font-size:120%" href="?app=ZOO&action=ONEFAM_ROOT&mode=html">[TEXT:Standard HTML]</a>
-<a style="font-size:120%" href="?app=ZOO&action=ONEFAM_EXT">[TEXT:New interface]</a>
+<a style="font-size:120%" href="?app=ZOO&action=ONEFAM_EXT">[TEXT:Ext interface]</a>
+<a style="font-size:120%" href="?app=ZOO&action=ONEFAM_NG">[TEXT:Ng interface]</a><br/>
 <a  target⁼"colors" href="?app=ZOO&action=ZOO_COLOR">[TEXT:Colors]</a>
 </div>
 [ZONE FDL:HTMLFOOT]
