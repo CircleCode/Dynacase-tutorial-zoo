@@ -17,11 +17,10 @@
 function zoo_color(Action &$action)
 {
     
-    $red = $quality = '';
     $usage = new ActionUsage($action);
-    $usage->addOption("red", "red level", $red, array(), 128);
-    $usage->addOption("quality", "quality", $quality, array(), 20);
-    $usage->strict(false);
+    $red=$usage->addOption("red", "red level", array(), 128);
+    $quality=$usage->addOption("quality", "quality",  array(), 20);
+    $usage->strict();
     $usage->verify();
     
     if (!is_numeric($red)) {
