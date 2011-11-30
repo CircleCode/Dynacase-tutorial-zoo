@@ -10,10 +10,10 @@
   <post-install>
     <process command="programs/record_application @APPNAME@" />
     <process command="programs/update_catalog" />
-    <process command="./wsh.php --api=freedom_import --file=./@APPNAME@/zoo-families.ods">
+    <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/zoo-families.ods">
 			<label lang="en">Importing zoo families</label>
 		</process>
-    <process command="./wsh.php --api=freedom_import --file=./@APPNAME@/zoo-init.ods">
+    <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/zoo-init.ods">
 			<label lang="en">Importing zoo somes species</label>
 		</process>
     
@@ -23,7 +23,7 @@
     <process command="programs/pre_migration @APPNAME@" />
     <process command="programs/record_application @APPNAME@" />
     <process command="programs/update_catalog" />  
-    <process command="./wsh.php --api=freedom_import --reinitattr=no --file=./@APPNAME@/zoo-families.ods">
+    <process command="./wsh.php --api=importDocuments --reinitattr=no --file=./@APPNAME@/zoo-families.ods">
 			<label lang="en">Update zoo families</label>
 		</process>
 		
