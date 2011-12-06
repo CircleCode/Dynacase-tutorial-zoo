@@ -4,7 +4,7 @@
   <description>Zoo application sample.</description>
 
   <requires>
-    <module name="dynacase-platform" version="3.0.1" comp="ge"/>
+    <module name="dynacase-platform" version="3.1.0" comp="ge"/>
   </requires>
 
   <post-install>
