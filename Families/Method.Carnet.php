@@ -12,6 +12,8 @@
 
 /**
  * @begin-method-ignore
+ *
+ * @property Layout lay
  * this part will be deleted when construct document class until end-method-ignore
  */
 Class _CARNET extends Doc {
@@ -30,6 +32,9 @@ Class _CARNET extends Doc {
     /**
      * carnet de sante
      * display new ordonnance
+     * @param string $target
+     * @param bool $ulink
+     * @param bool $abstract
      */
     function viewordonnance($target="_self",$ulink=true,$abstract=false) {
         $idveto=Action::getArgument('ca_idveterinaire');
@@ -51,6 +56,9 @@ Class _CARNET extends Doc {
     /**
      * carnet de sante
      * view resume of diseases
+     * @param string $target
+     * @param bool $ulink
+     * @param bool $abstract
      */
     function maladie($target="_self",$ulink=true,$abstract=false) {
 

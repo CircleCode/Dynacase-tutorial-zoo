@@ -1,40 +1,40 @@
 <?xml version="1.0"?>
-<module name="freedom-zoo" disabled="no" version="@VERSION@" release="@RELEASE@">
+<module name="@PACKAGE@" disabled="no" version="@VERSION@" release="@RELEASE@">
 
-  <description>Zoo application sample.</description>
+    <description>Zoo application sample.</description>
 
-  <requires>
-    <module name="dynacase-platform" version="3.1.0" comp="ge"/>
-  </requires>
+    <requires>
+        <module name="dynacase-platform" version="3.1.0" comp="ge"/>
+    </requires>
 
-  <post-install>
-    <process command="programs/record_application @APPNAME@" />
-    <process command="programs/update_catalog" />
-    <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/zoo-families.ods">
-			<label lang="en">Importing zoo families</label>
-		</process>
-    <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/zoo-init.ods">
-			<label lang="en">Importing zoo somes species</label>
-		</process>
-    
-  </post-install>
+    <post-install>
+        <process command="programs/record_application @APPNAME@"/>
+        <process command="programs/update_catalog"/>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/zoo-families.ods">
+            <label lang="en">Importing zoo families</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/zoo-init.ods">
+            <label lang="en">Importing zoo somes species</label>
+        </process>
 
-  <post-upgrade>
-    <process command="programs/pre_migration @APPNAME@" />
-    <process command="programs/record_application @APPNAME@" />
-    <process command="programs/update_catalog" />  
-    <process command="./wsh.php --api=importDocuments --reinitattr=no --file=./@APPNAME@/zoo-families.ods">
-			<label lang="en">Update zoo families</label>
-		</process>
-		
-    <process command="programs/post_migration @APPNAME@" />
-  </post-upgrade>
-  
-  <changelog>
-  	
-    <version number="0.3.0" date="2010-01-13">
-      <change title="Zoo adaptation for freedom 2.14" />
-    </version>
-  </changelog>
+    </post-install>
+
+    <post-upgrade>
+        <process command="programs/pre_migration @APPNAME@"/>
+        <process command="programs/record_application @APPNAME@"/>
+        <process command="programs/update_catalog"/>
+        <process command="./wsh.php --api=importDocuments --reinitattr=no --file=./@APPNAME@/zoo-families.ods">
+            <label lang="en">Update zoo families</label>
+        </process>
+
+        <process command="programs/post_migration @APPNAME@"/>
+    </post-upgrade>
+
+    <changelog>
+
+        <version number="0.3.0" date="2010-01-13">
+            <change title="Zoo adaptation for freedom 2.14"/>
+        </version>
+    </changelog>
 
 </module>

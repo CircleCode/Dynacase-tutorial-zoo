@@ -14,26 +14,29 @@
  * @begin-method-ignore
  * this part will be deleted when construct document class until end-method-ignore
  */
-Class _ESPECE extends Doc {
-	/*
-	 * @end-method-ignore
-	 */
+Class _ESPECE extends Doc
+{
+    /*
+      * @end-method-ignore
+      */
 
-	/**
-	 * special edit view
-	 * @return void
-	 */
-	function editcontinent() {
-		$this->editAttr();
-	}
+    /**
+     * special edit view
+     * @return void
+     */
+    function editcontinent()
+    {
+        $this->editAttr();
+    }
 
-	/**
-	 * @begin-method-ignore
-	 * this part will be deleted when construct document class until end-method-ignore
-	 */
+    /**
+     * @begin-method-ignore
+     * this part will be deleted when construct document class until end-method-ignore
+     */
 }
+
 /*
- * @end-method-ignore
- */
+* @end-method-ignore
+*/
 
 ?>

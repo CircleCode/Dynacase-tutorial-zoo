@@ -7,13 +7,16 @@
 
 global $app_const;
 
-$app_const= array(
-		  "INIT" => "yes",
-		  "VERSION" => "@VERSION@-@RELEASE@",
-		  "ONEFAM_MIDS"=>"ZOO_ANIMAL,ZOO_ENCLOS,ZOO_ESPECE,ZOO_CLASSE,ZOO_CARNETSANTE,ZOO_ENTREE,ZOO_DEMANDEADOPTION",
-		  "ZOO_NAME"    =>array("val"=>"Zoo Land",
-					"descr"=>N_("Name of the zoo"),
-					"global"=>"N",
-					"user"=>"N"));
+$app_const = array(
+    "INIT"        => "yes",
+    "VERSION"     => "@VERSION@-@RELEASE@",
+    "ONEFAM_MIDS" => "ZOO_ANIMAL,ZOO_ENCLOS,ZOO_ESPECE,ZOO_CLASSE,ZOO_CARNETSANTE,ZOO_ENTREE,ZOO_DEMANDEADOPTION",
+    "ZOO_NAME"    => array(
+        "val"   => "Zoo Land",
+        "descr" => N_("Name of the zoo"),
+        "global"=> "N",
+        "user"  => "N"
+    )
+);
 
 ?>

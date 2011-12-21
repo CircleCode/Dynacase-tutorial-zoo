@@ -1,43 +1,53 @@
 <?php
 
 /**
- * Animal Density
+ * get animals density for each enclos
  *
  * @author Anakeen 2008
  * @version $Id: zoo_density.php,v 1.4 2010-04-30 13:44:07 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * @package freedom-zoo
- * 
+ * @package dynacase-zoo
+ *
+ * @global Action $action
  */
- /**
- */
 
+require_once "FDL/freedom_util.php";
 
-include_once("FDL/Class.Doc.php");
-include_once("FDL/Class.SearchDoc.php");
+$usage = new ApiUsage();
+$usage->setText("get animals density for each enclos");
+$usage->verify();
 
-$usage="usage   ";
-
-$dbaccess=$appl->GetParam("FREEDOM_DB");
+// Check database access
+$dbaccess = $action->dbaccess;
 if ($dbaccess == "") {
-  print "Freedom Database not found : param FREEDOM_DB";
-  exit;
+    $action->exitError("Database not found");
 }
 
-// search the classe document
-
-$s=new SearchDoc($dbaccess,"ZOO_ENCLOS");
+$s = new SearchDoc($dbaccess, "ZOO_ENCLOS");
 $s->setObjectReturn(); 
 $s->search(); 
 
-if ($s->count()==0) $action->exitError(sprintf("no enclos found"));  
-while ($doc=$s->nextDoc()) {
-  print sprintf("Enclos %30s : surface %4dm² :",$doc->getTitle(),
-                      $doc->getValue("en_surface"));
-  $nbani=count($doc->getTvalue("en_animaux"));
-  if ($nbani > 0) $density=floatval($doc->getValue("en_surface"))/$nbani;
-  else $density=0;
-  print sprintf("%.02f m²/animal (%d animals)\n",$density,$nbani);
+if ($s->count()==0){
+    $action->exitError(sprintf("no enclos found"));
+}
+
+foreach ($s->getDocumentList() as $enclos) {
+    /* @var _ENCLOS $enclos */
+    print sprintf("Enclos %30s : surface %4dm² :",
+        $enclos->getTitle(),
+        $enclos->getValue("en_surface")
+    );
+
+    $nbAnimals = count($enclos->getTvalue("en_animaux"));
+    if ($nbAnimals > 0){
+        $density = floatval($enclos->getValue("en_surface")) / $nbAnimals;
+    } else{
+        $density = 0;
+    }
+    print sprintf("%.02f m²/animal (%d animals)\n",
+        $density,
+        $nbAnimals
+    );
 }
 
 ?>

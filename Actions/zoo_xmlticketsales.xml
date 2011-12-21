@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<sales price="[total]" date="[date]" adultcount="[nbadultes]" childcount="[nbenfants]" adultprice="[prixadultes]" childprice="[prixenfants]">
-[BLOCK TICKETS]
-<ticket price="[prixtotal]"><adult count="[nbadulte]" price="[prixadulte]"/><child count="[nbenfant]" price="[prixenfant]"/></ticket>[ENDBLOCK TICKETS]
-</sales>
