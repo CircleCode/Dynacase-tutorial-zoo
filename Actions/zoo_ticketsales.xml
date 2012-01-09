@@ -1,0 +1,43 @@
+[ZONE FDL:HTMLHEAD?title=[TEXT:zoo:Day Sales] : [date]]
+
+<img align="right" src="[IMG:zoo.png]"/>
+<h1>[TEXT:Date] : [date]</h1>
+<table style="width:100%">
+    <thead style="background-color:[COLOR_B8]">
+        <tr>
+            <td>[TEXT:zoo:nb enfants]</td>
+            <td>[TEXT:zoo:nb adultes]</td>
+            <td>[TEXT:zoo:prix enfants]</td>
+            <td>[TEXT:zoo:prix adultes]</td>
+            <td>[TEXT:zoo:total]</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        [BLOCK TICKETS]
+        <tr>
+            <td>[nbenfant]</td>
+            <td>[nbadulte]</td>
+            <td>[prixenfant]</td>
+            <td>[prixadulte]</td>
+            <td style="text-align:right">[prixtotal]&euro;</td>
+        </tr>
+        [ENDBLOCK TICKETS]
+    </tbody>
+
+    <tfoot style="background-color:[COLOR_C2]">
+        <tr>
+            <td>[nbenfants]</td>
+            <td>
+                [nbadultes]
+            </td>
+            <td>[prixenfants]</td>
+            <td>[prixadultes]</td>
+            <td style="text-align:right">
+                <span style="font-weight:bold">[total]&euro;</span>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+[ZONE FDL:HTMLFOOT]

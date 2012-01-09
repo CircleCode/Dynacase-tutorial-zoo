@@ -27,21 +27,24 @@ class WAdoption extends WDoc
     
     public $transitions = array(
         self::Ttransmited => array(
-            "m1" => "",
-            "m2" => ""
+            "m1" => "verifyValidatorMail",
+            "m2" => "sendTransmitedMail"
         ),
         self::Taccepted => array(
-            "m1" => "",
-            "m2" => ""
+            "m1" => "verifyEnclosDispo",
+            "m2" => "createAnimal"
         ),
         self::Trefused => array(
-            "m1" => "",
-            "m2" => "",
-            "nr" => true
+            "m1" => "notifyReject",
+            "m2" => "sendRefusedMail",
+            "nr" => true,
+            "ask" => array(
+                "wad_refus"
+            )
         ),
         self::Trealised => array(
-            "m1" => "",
-            "m2" => ""
+            "m1" => "verifyEnclosDispo",
+            "m2" => "createAnimal"
         ),
         self::Tretry => array(
             "m1" => "",
@@ -85,6 +88,63 @@ class WAdoption extends WDoc
 
     /* @var _ANIMAL $nouvelAnimal */
     protected $nouvelAnimal = null;
+
+    /**
+     * verify that the validator has a mail
+     *
+     * @return string error if no validator or no mail
+     */
+    public function verifyValidatorMail()
+    {
+        $idval = $this->doc->getValue("DE_IDVAL");
+        if (!$idval) {
+            return sprintf(_("zoo:no validator defined"));
+        }
+        $to = $this->doc->getRValue("DE_IDVAL:US_MAIL");
+        if (!$to) {
+            return sprintf(_("zoo:no mail for validator"));
+        }
+        return "";
+    }
+
+    /**
+     * @param string $newstate
+     *
+     * @return string
+     */
+    public function sendTransmitedMail($newstate)
+    {
+        $tkeys = array();
+        if ($this->doc->getRValue("de_idespece:es_protegee") == "1") {
+            // get others animals
+            $otherAnimals = array();
+
+            $s = new SearchDoc($this->dbaccess, "ZOO_ANIMAL");
+            $s->addFilter("an_espece = '%d'", $this->doc->getValue("de_idespece"));
+            $t = $s->search();
+
+            foreach ($t as $animal) {
+                $otherAnimals[] = $this->getDocAnchor($animal["initid"], "mail");
+            }
+            // add the key to be inserted in mail template
+            $tkeys["animals"] = implode(", ", $otherAnimals);
+
+            // choose the template for protected animals
+            $choosenMailTemplateId = $this->getParamValue("WAD_MAILSECURE");
+        } else {
+            // choose the template for not protected animals
+            $choosenMailTemplateId = $this->getParamValue("WAD_MAILCURRENT");
+        }
+
+        $choosenMailTemplate = new_doc($this->dbaccess, $choosenMailTemplateId);
+        /* @var _MAILTEMPLATE $choosenMailTemplate */
+        if ($choosenMailTemplate->isAlive()) {
+            $err = $choosenMailTemplate->sendDocument($this->doc, $tkeys);
+        } else {
+            $err = _("no mail template");
+        }
+        return $err;
+    }
     
     public function sendTransmitedMail_detail($newstate)
     {
@@ -114,6 +174,30 @@ class WAdoption extends WDoc
         return "";
     }
     
+    public function notifyReject()
+    {
+        $reason = $this->getValue("wad_refus");
+        
+        $this->doc->disableEditControl(); // no control here
+        $err = $this->doc->setValue("de_motif", $reason);
+        if($err == ''){
+            $err = $this->doc->store();
+        }
+        $this->doc->enableEditControl();
+        return $err;
+    }
+    
+    public function sendRefusedMail($newstate)
+    {
+        $to = $this->doc->GetRValue("DE_IDDEMAND:US_MAIL");
+        $subject = sprintf(_("adoption %s refused"), $this->doc->title);
+
+        SetHttpVar("redirect_app", "FDL");
+        SetHttpVar("redirect_act", "EDITMAIL&mail_to=$to&mzone=ZOO:DE_MAIL_REFUSED:S&mail_subject=$subject&mid=" . $this->doc->id);
+        
+        return "";
+    }
+    
     public function sendRealisedMail($newstate)
     {
         global $action;
@@ -125,6 +209,39 @@ class WAdoption extends WDoc
         }
         $subject = sprintf(_("adoption %s realised"), $this->doc->title);
         sendCard($action, $this->doc->id, $to, $cc, $subject, "ZOO:DE_MAIL_REALISED:S", true);
+        return "";
+    }
+    
+    public function verifyEnclosDispo()
+    {
+        // create the new animal even if user has no sufficient rights
+        $this->nouvelAnimal = createDoc($this->dbaccess, "ZOO_ANIMAL", false);
+        if ($this->nouvelAnimal) {
+            $this->nouvelAnimal->setValue("an_espece", $this->doc->getValue("de_idespece"));
+            // ensure there is available gate for this animal
+            $err = $this->nouvelAnimal->verifyCapacity();
+        } else {
+            $err =  _("zoo:Cannot create animal");
+        }
+        return $err;
+    }
+    
+    public function createAnimal()
+    {
+        $nouvelAnimal = $this->nouvelAnimal;
+        if ($nouvelAnimal) {
+            $nouvelAnimal->setValue("an_nom", $this->doc->getValue("de_nom"));
+            $nouvelAnimal->setValue("an_espece", $this->doc->getValue("de_idespece"));
+            $nouvelAnimal->setValue("an_naissance", $this->doc->getValue("de_naissance"));
+            $nouvelAnimal->setValue("an_photo", $this->doc->getValue("de_photo"));
+            $err = $nouvelAnimal->store();
+            if ($err == "") {
+                //once the animal is created, redirect the user to the animal
+                SetHttpVar("redirect_app", "FDL");
+                SetHttpVar("redirect_act", "OPENDOC&mode=view&id=" . $nouvelAnimal->id);
+            }
+            return $err;
+        }
         return "";
     }
 }

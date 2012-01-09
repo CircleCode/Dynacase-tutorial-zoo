@@ -49,6 +49,15 @@ Class _ENCLOS extends Doc
     }
 
     /**
+     * return count of animals
+     * @return int
+     */
+    public function getNbAnimaux()
+    {
+        return count($this->getTValue("en_animaux"));
+    }
+
+    /**
      * default view for enclos to see animal's photo
      *
      * @param string $target hyperlinks target

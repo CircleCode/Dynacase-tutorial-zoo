@@ -1,0 +1,7 @@
+[TEXT:Date] : [date]
+---+----+------+---------------
+ NA| NE | PA   | PE   |  Total
+---+----+------+---------------[BLOCK TICKETS]
+[nbadulte] | [nbenfant] | [prixenfant] + [prixadulte] = [prixtotal][ENDBLOCK TICKETS]
+---+----+------+---------------
+[nbadultes] | [nbenfants] | [prixenfants] + [prixadultes] = [total]
