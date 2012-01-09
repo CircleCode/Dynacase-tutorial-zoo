@@ -18,6 +18,8 @@ ATTR;AN_ENFANT;AN_ENFANT_T;enfant;N;N;docid("ZOO_ANIMAL");220;W;;;;;;;creation={
 ATTR;AN_CARNETSANTE;AN_IDENTIFICATION;Carnet Santé;N;N;menu;230;W;;%S%app=GENERIC&action=GENERIC_ISEARCH&id=%I%&famid=ZOO_CARNETSANTE&viewone=Y;;;;;;
 ATTR;AN_ENCLOS;AN_IDENTIFICATION;Enclos;N;N;menu;240;W;;%S%app=GENERIC&action=GENERIC_ISEARCH&id=%I%&famid=ZOO_ENCLOS&viewone=Y;;;;;;
 ATTR;AN_PARENT;AN_IDENTIFICATION;Parents;N;N;menu;250;W;;%S%app=GENERIC&action=GENERIC_ISEARCH&generic=Y&id=%I%&famid=ZOO_ANIMAL;;;;;;
-ATTR;AN_FOLDER;;Dossier;N;N;menu;260;W;;%S%app=ZOO&action=ZOO_ANIMALFOLDER&id=%I%;;;;;;
+ATTR;AN_PERE;AN_IDENTIFICATION;pere;N;Y;docid('ZOO_ANIMAL');260;R;;;;::getAscendant(M);;;doctitle=auto
+ATTR;AN_MERE;AN_IDENTIFICATION;mere;N;Y;docid('ZOO_ANIMAL');270;R;;;;::getAscendant(F);;;doctitle=auto
+ATTR;AN_FOLDER;;Dossier;N;N;menu;10;W;;%S%app=ZOO&action=ZOO_ANIMALFOLDER&id=%I%;;;;;
 ;;;;;;;;;;;;;;;;
 END;;;;;;;;;;;;;;;;

@@ -13,4 +13,7 @@ ATTR;ENT_ENFANT;ENT_FR_ENTREES;nombre enfant;N;N;int;220;W;;;;;;;;
 ATTR;ENT_PRINTTICKET;;Tickets;N;N;menu;230;W;;%S%app=FDL&action=IMPCARD&zone=ZOO:VIEWTICKETS&id=%I%;;;;;;
 ATTR;ENT_DAYSALES;;Recette;N;N;menu;240;W;;%S%app=ZOO&action=ZOO_TICKETSALES&date=%ENT_DATE%;;::canExecute(ZOO,ZOO_TICKETSALES);;;mwidth=300px|mheight=400px;
 ATTR;ENT_TODAYSALES;;Recette du jour;N;N;menu;250;W;;%S%app=ZOO&action=ZOO_TICKETSALES;;::canExecute(ZOO,ZOO_TICKETSALES);;;mwidth=300px|mheight=400px|global=yes|onlyglobal=yes;
+PARAM;ENT_FR_PRIX;;Prix;N;N;frame;10;W;;;;;;;
+PARAM;ENT_PRIXENFANT;ENT_FR_PRIX;prix enfant;N;N;money;80;W;;;;;;;
+PARAM;ENT_PRIXADULTE;ENT_FR_PRIX;prix adulte;N;N;money;90;W;;;;;;;
 END;;;;;;;;;;;;;;;;

@@ -22,7 +22,7 @@ function getOrdre($dbaccess, $classId, $userInput = "")
 
     $result = array();
 
-    if ($classId) {
+    if($classId){
         $class = new_doc($dbaccess, $classId);
         if ($class->isAlive()) {
             //get orders for this class only
@@ -46,7 +46,7 @@ function getOrdre($dbaccess, $classId, $userInput = "")
             return _("zoo:unknown class");
         }
     } else {
-        foreach ($orders as $classLatinName => $classOrders) {
+        foreach($orders as $classLatinName => $classOrders){
             $s = new SearchDoc($dbaccess, 'ZOO_CLASSE');
             $s->addFilter("cl_nomscientifique = '%s'", $classLatinName);
             $s->setSlice(1);
@@ -65,41 +65,27 @@ function getOrdre($dbaccess, $classId, $userInput = "")
         return $result;
     }
 }
-function zoo_searchspecies(&$action,$dbaccess,$id,$nom) {
-   // print "DB=$dbaccess, NOM=$nom ID=$id";
-    $action->lay->set("enclosname",$nom);
-    $doc=new_doc($dbaccess,$id);
-    
-    if ($doc->isAlive()) {
-        $action->lay->set("CAPACITY",$doc->getValue("en_capacite",_("zoo:Capacity not set")));
-    } else {
-        $action->lay->set("CAPACITY",_("zoo;Capacity not set"));
-    }
-}
-
 
 /**
  * return address of a person
  *
+ * @param string $dbaccess database coordonates
  * @param string $userInput optionnal filter to select personn
  *
  * @return string[][]|string
  */
-function getAddress($userInput = "")
+function getAddress($dbaccess, $userInput = "")
 {
 
-    $s = new SearchDoc('', "USER");
+    $s = new SearchDoc($dbaccess, "USER");
 
     if ($userInput != "") { // add optionnal filter on title
         $s->addFilter("title ~* '%s'", $userInput);
     }
-    $s->setSlice(100); // limit nb results
+    $s->slice = 100; // limit nb results
     $s->setObjectReturn(); // we want objects
 
-    $s->search();
-
     $result = array();
-
     foreach ($s->getDocumentList() as $user) {
         /* @var _USER $user */
 
@@ -126,4 +112,16 @@ function getAddress($userInput = "")
     }
     return $result;
 }
+
+function zoo_searchspecies(&$action,$dbaccess,$id,$nom) {
+    $action->lay->set("enclosname",$nom);
+    $doc=new_doc($dbaccess,$id);
+    
+    if ($doc->isAlive()) {
+        $action->lay->set("CAPACITY",$doc->getValue("en_capacite",_("zoo:Capacity not set")));
+    } else {
+        $action->lay->set("CAPACITY",_("zoo;Capacity not set"));
+    }
+}
+
 ?>

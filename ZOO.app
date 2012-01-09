@@ -22,6 +22,25 @@ $app_acl = array(
 /* Available actions */
 $action_desc = array(
     array(
+        "name"              => "ZOO_TICKETSALES",
+        "short_name"        => N_("sum of sales"),
+        "acl"               => "ZOO_MONEY"
+    ),
+    array(
+        "name"               => "ZOO_TEXTTICKETSALES",
+        "short_name"         => N_("text sum of sales"),
+        "script"             => "zoo_ticketsales.php",
+        "function"           => "zoo_ticketsales",
+        "acl"                => "ZOO_MONEY"
+    ),
+    array(
+        "name"               => "ZOO_XMLTICKETSALES",
+        "short_name"         => N_("xml sum of sales"),
+        "script"             => "zoo_ticketsales.php",
+        "function"           => "zoo_xmlticketsales",
+        "acl"                => "ZOO_MONEY"
+    ),
+    array(
         "name"              => "ZOO_ANIMALFOLDER",
         "short_name"        => N_("animal folder"),
         "acl"               => "ONEFAM"

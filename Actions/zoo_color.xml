@@ -2,15 +2,15 @@
 <head><title>Colors</title>
 </head>
 <body>
-<H1>Color Table</H1>
+<h1>Color Table</h1>
 <form 
-      name="fviewidoc"style="display:inline"
+      name="fviewidoc" style="display:inline"
       method="POST" ENCTYPE="multipart/form-data"
-      action="[CORE_STANDURL]&app=ZOO&action=ZOO_COLOR"
+      action="[CORE_STANDURL]&amp;app=ZOO&amp;action=ZOO_COLOR"
        >
-[TEXT:Quality] : <input value="[quality]" type="text" size="3" name="quality">
-[TEXT:Red] <input value="[red]"  type="text" size="3" name="red">
-<input type="submit">
+[TEXT:Quality] : <input value="[quality]" type="text" size="3" name="quality"/>
+[TEXT:Red] <input value="[red]"  type="text" size="3" name="red"/>
+<input type="submit"/>
 </form>
 
 <table cellspacing="0" cellpadding="0">

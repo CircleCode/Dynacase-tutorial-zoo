@@ -15,7 +15,7 @@ ATTR;DE_FR_ANIDENTIFICATION;DE_TAB_IDENT;Animal;N;N;frame;1200;W;;;;;;;;
 ATTR;DE_NOM;DE_FR_ANIDENTIFICATION;nom;Y;N;text;1210;W;Y;;;;;;;
 ATTR;DE_ESPECE;DE_FR_ANIDENTIFICATION;Nom de l'espèce;N;N;text;1220;H;;;;;;;;
 ATTR;DE_IDESPECE;DE_FR_ANIDENTIFICATION;Espèce;N;N;docid("ZOO_ESPECE");1230;W;Y;;;;;;doctitle=de_espece|creation=yes;
-ATTR;DE_NAISSANCE;DE_FR_ANIDENTIFICATION;date de naissance;N;N;date;1240;W;;;;;;;;
+ATTR;DE_NAISSANCE;DE_FR_ANIDENTIFICATION;date de naissance;N;N;date;1240;W;;;;;;::verifyDate(DE_NAISSANCE);
 ATTR;DE_PHOTO;DE_FR_ANIDENTIFICATION;photo;N;N;image;1250;W;;;;;;;;
 ATTR;DE_TAB_INFO;;Complément;N;N;tab;2000;W;;;;;;;;
 ATTR;DE_FR_PROVENANCE;DE_TAB_INFO;Provenance;N;N;frame;2100;W;;;;;;;;
@@ -38,4 +38,9 @@ PARAM;DE_IDGVALID;DE_FR_PVAL;groupe valideur id;N;N;docid;210;H;Y;;;::getTitle(D
 PARAM;DE_GVALID;DE_FR_PVAL;groupe valideur;N;N;text;220;W;Y;%S%app=FDL&action=FDL_CARD&id=%DE_IDGVALID%;fdl.php;lfamily(D,IGROUP,DE_GVALID):DE_IDGVALID,DE_GVALID;;;;
 PARAM;DE_IDGREAL;DE_FR_PVAL;groupe prise en charge id;N;N;docid;230;H;Y;;;::getTitle(DE_IDGREAL):DE_GREAL;;;;
 PARAM;DE_GREAL;DE_FR_PVAL;groupe prise en charge;N;N;text;240;W;Y;%S%app=FDL&action=FDL_CARD&id=%DE_IDGREAL%;fdl.php;lfamily(D,IGROUP,DE_GREAL):DE_IDGREAL,DE_GREAL;;;;
+;;;;;;;;;;;;;;;;
+PARAM;de_p_f_mails;;mails;N;N;frame;300;W;;;;;;;;
+PARAM;de_p_mail_non_wwf;de_p_f_mails;Mail non WWF;N;N;docid("MAILTEMPLATE");310;W;;;;;;;;
+PARAM;de_p_mail_wwf;de_p_f_mails;Mail WWF;N;N;docid("MAILTEMPLATE");320;W;;;;;;;;
+;;;;;;;;;;;;;;;;
 END;;;;;;;;;;;;;;;;
