@@ -1,0 +1,10 @@
+//FAM;dossier(DIR);<specid>;<fldid>;titre;
+ORDER;DIR;;;ba_title;
+DOC;DIR;FLD_ZOO_ENCLOS;;FLD_ZOO_ENCLOS;
+;;;;;
+//;Father ;Title;Id;Classe;Logical Name
+BEGIN;;Enclos;;;ZOO_ENCLOS
+ICON;zoo_enclos.png;;;;
+METHOD;Method.zoo_enclos.php;;;;
+DFLDID;FLD_ZOO_ENCLOS;;;;
+END;;;;;

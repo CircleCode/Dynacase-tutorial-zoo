@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @property _ANIMAL $doc
+ * @property _ZOO_ANIMAL doc
  */
-Class WAnimal extends WDoc
+class WFL_ZOO_ANIMAL extends WDoc
 {
     var $attrPrefix = "WAN";
 

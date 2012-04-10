@@ -4,15 +4,91 @@
     <description>Zoo application sample.</description>
 
     <requires>
-        <module name="dynacase-platform" version="3.1.0" comp="ge"/>
+        <module name="dynacase-platform" version="3.2.0" comp="ge"/>
     </requires>
 
     <post-install>
         <process command="programs/record_application @APPNAME@"/>
         <process command="programs/update_catalog"/>
-        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/zoo-families.ods">
-            <label lang="en">Importing zoo families</label>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_classe.csv">
+            <label lang="en">importing STRUCT_zoo_classe.csv</label>
         </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_classe.csv">
+            <label lang="en">importing PARAM_zoo_classe.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_espece.csv">
+            <label lang="en">importing STRUCT_zoo_espece.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_espece.csv">
+            <label lang="en">importing PARAM_zoo_espece.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_enclos.csv">
+            <label lang="en">importing STRUCT_zoo_enclos.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_enclos.csv">
+            <label lang="en">importing PARAM_zoo_enclos.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_animal.csv">
+            <label lang="en">importing STRUCT_zoo_animal.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_animal.csv">
+            <label lang="en">importing PARAM_zoo_animal.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_carnetsante.csv">
+            <label lang="en">importing STRUCT_zoo_carnetsante.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_carnetsante.csv">
+            <label lang="en">importing PARAM_zoo_carnetsante.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_entree.csv">
+            <label lang="en">importing STRUCT_zoo_entree.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_entree.csv">
+            <label lang="en">importing PARAM_zoo_entree.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_demandeadoption.csv">
+            <label lang="en">importing STRUCT_zoo_demandeadoption.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_demandeadoption.csv">
+            <label lang="en">importing PARAM_zoo_demandeadoption.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_gardien.csv">
+            <label lang="en">importing STRUCT_zoo_gardien.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_gardien.csv">
+            <label lang="en">importing PARAM_zoo_gardien.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_veterinaire.csv">
+            <label lang="en">importing STRUCT_zoo_veterinaire.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_veterinaire.csv">
+            <label lang="en">importing PARAM_zoo_veterinaire.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_cuisinier.csv">
+            <label lang="en">importing STRUCT_zoo_cuisinier.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_cuisinier.csv">
+            <label lang="en">importing PARAM_zoo_cuisinier.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/WFL_zoo_demandeadoption.csv">
+            <label lang="en">importing WFL_zoo_demandeadoption.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/WFL_zoo_animal.csv">
+            <label lang="en">importing WFL_zoo_animal.csv</label>
+        </process>
+
         <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/zoo-init.ods">
             <label lang="en">Importing zoo somes species</label>
         </process>
@@ -23,8 +99,83 @@
         <process command="programs/pre_migration @APPNAME@"/>
         <process command="programs/record_application @APPNAME@"/>
         <process command="programs/update_catalog"/>
-        <process command="./wsh.php --api=importDocuments --reinitattr=no --file=./@APPNAME@/zoo-families.ods">
-            <label lang="en">Update zoo families</label>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_classe.csv">
+            <label lang="en">importing STRUCT_zoo_classe.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_classe.csv">
+            <label lang="en">importing PARAM_zoo_classe.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_espece.csv">
+            <label lang="en">importing STRUCT_zoo_espece.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_espece.csv">
+            <label lang="en">importing PARAM_zoo_espece.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_enclos.csv">
+            <label lang="en">importing STRUCT_zoo_enclos.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_enclos.csv">
+            <label lang="en">importing PARAM_zoo_enclos.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_animal.csv">
+            <label lang="en">importing STRUCT_zoo_animal.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_animal.csv">
+            <label lang="en">importing PARAM_zoo_animal.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_carnetsante.csv">
+            <label lang="en">importing STRUCT_zoo_carnetsante.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_carnetsante.csv">
+            <label lang="en">importing PARAM_zoo_carnetsante.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_entree.csv">
+            <label lang="en">importing STRUCT_zoo_entree.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_entree.csv">
+            <label lang="en">importing PARAM_zoo_entree.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_demandeadoption.csv">
+            <label lang="en">importing STRUCT_zoo_demandeadoption.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_demandeadoption.csv">
+            <label lang="en">importing PARAM_zoo_demandeadoption.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_gardien.csv">
+            <label lang="en">importing STRUCT_zoo_gardien.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_gardien.csv">
+            <label lang="en">importing PARAM_zoo_gardien.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_veterinaire.csv">
+            <label lang="en">importing STRUCT_zoo_veterinaire.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_veterinaire.csv">
+            <label lang="en">importing PARAM_zoo_veterinaire.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_zoo_cuisinier.csv">
+            <label lang="en">importing STRUCT_zoo_cuisinier.csv</label>
+        </process>
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_zoo_cuisinier.csv">
+            <label lang="en">importing PARAM_zoo_cuisinier.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/WFL_zoo_demandeadoption.csv">
+            <label lang="en">importing WFL_zoo_demandeadoption.csv</label>
+        </process>
+
+        <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/WFL_zoo_animal.csv">
+            <label lang="en">importing WFL_zoo_animal.csv</label>
         </process>
 
         <process command="programs/post_migration @APPNAME@"/>

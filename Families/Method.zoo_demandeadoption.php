@@ -14,7 +14,7 @@
  * @property Layout lay
  * this part will be deleted when construct document class until end-method-ignore
  */
-Class _ADOPTION extends Doc {
+Class _ZOO_DEMANDEADOPTION extends Doc {
     /*
      * @end-method-ignore
      */

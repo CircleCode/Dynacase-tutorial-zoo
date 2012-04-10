@@ -1,0 +1,13 @@
+//FAM;dossier(DIR);<specid>;<fldid>;titre;
+ORDER;DIR;;;ba_title;
+DOC;DIR;FLD_ZOO_ESPECE;;FLD_ZOO_ESPECE;
+;;;;;
+//;Father ;Title;Id;Classe;Logical Name
+BEGIN;;Espèce;;;ZOO_ESPECE
+ICON;zoo_espece.png;;;;
+METHOD;Method.zoo_espece.php;;;;
+DFLDID;FLD_ZOO_ESPECE;;;;
+;;;;;
+DEFAULT;ES_PROTEGEE;0;;;
+;;;;;
+END;;;;;

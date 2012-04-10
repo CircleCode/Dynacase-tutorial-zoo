@@ -1,0 +1,20 @@
+//;Father ;Title;Id;Classe;Logical Name;;;;;;;;;;;
+BEGIN;;;;;ZOO_ENCLOS;;;;;;;;;;;
+//;idattr;idframe;label;T;A;type;ord;vis;need;link;phpfile;phpfunc;elink ;constraint ;option;Commentaires
+;;;;;;;;;;;;;;;;
+ATTR;EN_IDENTIFICATION;;Identification;N;N;frame;100;W;;;;;;;;
+ATTR;EN_NOM;EN_IDENTIFICATION;nom;Y;N;text;110;W;;;;;;;;
+ATTR;EN_REFERENCE;EN_IDENTIFICATION;référence;Y;N;text;120;W;;;;;;;elabel=Préciser la référence;
+ATTR;EN_T_ESPECES;EN_IDENTIFICATION;liste espèce;N;N;array;130;W;;;zoo.php;ZOO:zoo_searchspecies(A,D,ID,en_nom):;;;ltitle=Insérer des espèces|lsymbol=Espèces|userowadd=no;
+ATTR;EN_ESPPROTECTED;EN_T_ESPECES;protégé;N;N;image;140;S;;;;;;;iwidth=32;
+ATTR;EN_PHOTO;EN_T_ESPECES;photo;N;N;image;150;S;;;;::getDocValue(EN_ESPECE,es_photo);;;;
+ATTR;EN_ESPECE;EN_T_ESPECES;espèce;N;N;docid("ZOO_ESPECE");160;W;;;zoo.php;ZOO:zoo_searchspecies(A,D,ID,en_nom):en_espece,en_comment;%S%app=GENERIC&action=GENERIC_EDIT&id=%EN_ESPECE%&classid=ZOO_ESPECE&ES_NOM=%CT%;;doctitle=auto;
+ATTR;EN_COMMENT;EN_T_ESPECES;commentaire;N;N;text;170;W;;;;;;;;
+ATTR;EN_CAPACITE;EN_IDENTIFICATION;capacité;N;N;int;180;W;;;;;;;;
+ATTR;EN_LOCALISATION;;localisation;N;N;frame;200;W;;;;;;;;
+ATTR;EN_SURFACE;EN_LOCALISATION;surface;N;N;double;210;W;;;;;;;;
+ATTR;EN_COORDONNEES;EN_LOCALISATION;Coordonnées;N;N;text;220;W;;;;;;;;
+ATTR;EN_CONTENU;;Contenu;N;N;frame;300;W;;;;;;;;
+ATTR;EN_T_ANIMAUX;EN_CONTENU;liste animaux;N;N;array;310;W;;;;;;;;
+ATTR;EN_ANIMAUX;EN_T_ANIMAUX;animaux;N;N;docid("ZOO_ANIMAL");320;W;;;;;%S%app=GENERIC&action=GENERIC_EDIT&id=%EN_ANIMAUX%&classid=ZOO_ANIMAL&AN_NOM=%CT%;;;
+END;;;;;;;;;;;;;;;;

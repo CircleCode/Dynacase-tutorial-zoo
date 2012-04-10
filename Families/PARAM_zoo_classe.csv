@@ -1,0 +1,10 @@
+//FAM;dossier(DIR);<specid>;<fldid>;titre;
+ORDER;DIR;;;ba_title;
+DOC;DIR;FLD_ZOO_CLASSE;;FLD_ZOO_CLASSE;
+;;;;;
+//;Father ;Title;Id;Classe;Logical Name
+BEGIN;;Classe;;;ZOO_CLASSE
+ICON;zoo_classe.png;;;;
+METHOD;Method.zoo_classe.php;;;;
+DFLDID;FLD_ZOO_CLASSE;;;;
+END;;;;;

@@ -14,7 +14,7 @@
  * @property Layout lay
  * this part will be deleted when construct document class until end-method-ignore
  */
-Class _ANIMAL extends Doc {
+Class _ZOO_ANIMAL extends Doc {
     /*
      * @end-method-ignore
      */
@@ -65,12 +65,13 @@ Class _ANIMAL extends Doc {
         $idcarnet=$this->getHealthCardId();
         $this->lay->set("idcarnet",$idcarnet);
     }
+
+    public function validatePastDate(){}
     /**
      * @begin-method-ignore
      * this part will be deleted when construct document class until end-method-ignore
      */
 }
-
 /*
  * @end-method-ignore
  */

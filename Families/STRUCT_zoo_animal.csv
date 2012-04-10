@@ -1,0 +1,23 @@
+//;Father ;Title;Id;Classe;Logical Name;;;;;;;;;;;
+BEGIN;;;;;ZOO_ANIMAL;;;;;;;;;;;
+//;idattr;idframe;label;T;A;type;ord;vis;need;link;phpfile;phpfunc;elink ;constraint ;option;Commentaires
+;;;;;;;;;;;;;;;;
+ATTR;AN_IDENTIFICATION;;Identification;N;N;frame;100;W;;;;;;;;
+ATTR;AN_NOM;AN_IDENTIFICATION;nom;Y;N;text;110;W;Y;;;;;;edittemplate=ZOO:ANIMALNAME:U|viewtemplate=ZOO:ANIMALNAME;
+ATTR;AN_TATOUAGE;AN_IDENTIFICATION;tatouage;N;N;int;120;W;;;;;;;edittemplate=ZOO:ANIMALTATOO:S|viewtemplate=ZOO:ANIMALTATOO:S;
+ATTR;AN_ESPECE;AN_IDENTIFICATION;espèce;N;N;docid('ZOO_ESPECE');130;W;Y;;;;;;creation={es_nom:CT}|doctitle=an_espece_title;
+ATTR;AN_ESPECE_TITLE;AN_IDENTIFICATION;espèce (titre);Y;N;text;140;H;;;;::getTitle(an_espece);;;;
+ATTR;AN_ORDRE;AN_IDENTIFICATION;ordre;N;N;text;150;R;;;;::getdocvalue(an_espece,es_ordre);;;;
+ATTR;AN_CLASSE;AN_IDENTIFICATION;classe;N;N;docid("ZOO_CLASSE");160;R;;;;::getdocvalue( an_espece , es_classe);;;doctitle=auto;
+ATTR;AN_SEXE;AN_IDENTIFICATION;sexe;N;N;enum;170;W;;;;M|Masculin,F|Féminin,H|Hermaphrodite;;;;
+ATTR;AN_PHOTO;AN_IDENTIFICATION;photo;N;N;image;180;W;;;;;;;;
+ATTR;AN_NAISSANCE;AN_IDENTIFICATION;date naissance;N;N;date;190;W;;;;;;::validatePastDate(AN_NAISSANCE);;
+ATTR;AN_ENTREE;AN_IDENTIFICATION;date entree;N;N;date;200;W;;;;;;::validatePastDate(AN_ENTREE);;
+ATTR;AN_ENFANT_T;AN_IDENTIFICATION;liste enfant;N;N;array;210;W;;;;;;;;
+ATTR;AN_ENFANT;AN_ENFANT_T;enfant;N;N;docid("ZOO_ANIMAL");220;W;;;;;;;creation={an_nom:CT,an_espece:an_espece};
+ATTR;AN_CARNETSANTE;AN_IDENTIFICATION;Carnet Santé;N;N;menu;230;W;;%S%app=GENERIC&action=GENERIC_ISEARCH&id=%I%&famid=ZOO_CARNETSANTE&viewone=Y;;;;;;
+ATTR;AN_ENCLOS;AN_IDENTIFICATION;Enclos;N;N;menu;240;W;;%S%app=GENERIC&action=GENERIC_ISEARCH&id=%I%&famid=ZOO_ENCLOS&viewone=Y;;;;;;
+ATTR;AN_PARENT;AN_IDENTIFICATION;Parents;N;N;menu;250;W;;%S%app=GENERIC&action=GENERIC_ISEARCH&generic=Y&id=%I%&famid=ZOO_ANIMAL;;;;;;
+ATTR;AN_FOLDER;;Dossier;N;N;menu;260;W;;%S%app=ZOO&action=ZOO_ANIMALFOLDER&id=%I%;;;;;;
+;;;;;;;;;;;;;;;;
+END;;;;;;;;;;;;;;;;

@@ -1,0 +1,13 @@
+//;Father ;Title;Id;Classe;Logical Name;;;;;;;;;;;;
+BEGIN;IUSER;;;;ZOO_CUISINIER;;;;;;;;;;;;
+//;idattr;idframe;label;T;A;type;ord;vis;need;link;phpfile;phpfunc;elink ;constraint ;option;Commentaires;
+;;;;;;;;;;;;;;;;;
+ATTR;US_FR_NOURRITURE;;nourriture;N;N;frame;100;W;;;;;;;;;
+ATTR;US_SPECIALITE_T;US_FR_NOURRITURE;Spécialite;N;N;array;270;W;;;;;;;;;270
+ATTR;US_SPECIALITE;US_SPECIALITE_T;Spécialité;N;N;docid("ZOO_ESPECE");273;W;;;;;;;;;273
+;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;
+ATTR;US_LION;;Lions HTML;N;N;menu;10;W;;%S%&app=FDL&action=IMPCARD&zone=ZOO:VIEWCMDECUISTO:T&id=%I%;;;;;;;10
+ATTR;US_LION_ODT;;Lions Odt;N;N;menu;20;W;;%S%&app=FDL&action=IMPCARD&zone=ZOO:viewcmdecuisto.odt:B&id=%I%;;;;;;;
+ATTR;US_LION_PDF;;Lions Pdf;N;N;menu;30;W;;%S%app=FDL&action=FDL_CARD&zone=ZOO:viewcmdecuisto.odt:B:pdf&id=%I%;;;;;;;
+END;;;;;;;;;;;;;;;;;

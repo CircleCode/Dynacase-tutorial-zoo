@@ -1,0 +1,11 @@
+//;Father ;Title;Id;Classe;Logical Name;;;;;;;;;;;;
+BEGIN;IUSER;;;;ZOO_VETERINAIRE;;;;;;;;;;;;
+//;idattr;idframe;label;T;A;type;ord;vis;need;link;phpfile;phpfunc;elink ;constraint ;option;Commentaires;
+;;;;;;;;;;;;;;;;;
+ATTR;US_FR_GARDE;;garde;N;N;frame;100;W;;;;;;;;;
+ATTR;US_DEBGARDE;US_FR_GARDE;Début Heure Garde;N;N;time;270;W;;;;;;;;;270
+ATTR;US_FINGARDE;US_FR_GARDE;Fin Heure Garde;N;N;time;271;W;;;;;;;;;271
+;;;;;;;;;;;;;;;;;
+ATTR;US_SPECIALITE_T;US_FR_GARDE;Spécialite;N;N;array;272;W;;;;;;;;;272
+ATTR;US_SPECIALITE;US_SPECIALITE_T;Spécialité;N;N;docid("ZOO_ESPECE");273;W;;;;;;;;;273
+END;;;;;;;;;;;;;;;;;

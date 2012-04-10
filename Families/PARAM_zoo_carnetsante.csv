@@ -1,0 +1,14 @@
+//FAM;dossier(DIR);<specid>;<fldid>;titre;
+ORDER;DIR;;;ba_title;
+DOC;DIR;FLD_ZOO_CARNETSANTE;;FLD_ZOO_CARNETSANTE;
+;;;;;
+//;Father ;Title;Id;Classe;Logical Name
+BEGIN;;Carnet de santé;;;ZOO_CARNETSANTE
+ICON;zoo_carnetsante.png;;;;
+METHOD;Method.zoo_carnetsante.php;;;;
+DFLDID;FLD_ZOO_CARNETSANTE;;;;
+;;;;;
+DEFAULT;CA_IDVETERINAIRE;::userDocid();;;
+DEFAULT;CA_VETERINAIRE;::getTitle(CA_IDVETERINAIRE);;;
+;;;;;
+END;;;;;

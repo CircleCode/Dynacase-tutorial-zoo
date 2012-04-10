@@ -1,0 +1,14 @@
+//FAM;dossier(DIR);<specid>;<fldid>;titre;
+ORDER;DIR;;;ba_title;
+DOC;DIR;FLD_ZOO_ENTREE;;FLD_ZOO_ENTREE;
+;;;;;
+//;Father ;Title;Id;Classe;Logical Name
+BEGIN;;Entrée;;;ZOO_ENTREE
+ICON;zoo_entree.png;;;;
+METHOD;Method.zoo_entree.php;;;;
+DFLDID;FLD_ZOO_ENTREE;;;;
+;;;;;
+DEFAULT;ENT_IDCAISSIERE;::getUserId();;;
+DEFAULT;ENT_DATE;::getDate();;;
+;;;;;
+END;;;;;

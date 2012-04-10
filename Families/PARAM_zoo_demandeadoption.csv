@@ -1,0 +1,13 @@
+//FAM;dossier(DIR);<specid>;<fldid>;titre;
+ORDER;DIR;;;ba_title;
+DOC;DIR;FLD_ZOO_DEMANDEADOPTION;;FLD_ZOO_DEMANDEADOPTION;
+;;;;;
+//;Father ;Title;Id;Classe;Logical Name
+BEGIN;;Demande d'adoption;;;ZOO_DEMANDEADOPTION
+ICON;zoo_demandeadoption.png;;;;
+METHOD;Method.zoo_demandeadoption.php;;;;
+DFLDID;FLD_ZOO_DEMANDEADOPTION;;;;
+;;;;;
+DEFAULT;DE_IDREDAC;::userDocid();;;
+;;;;;
+END;;;;;

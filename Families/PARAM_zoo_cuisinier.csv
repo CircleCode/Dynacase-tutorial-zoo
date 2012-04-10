@@ -1,0 +1,10 @@
+//FAM;dossier(DIR);<specid>;<fldid>;titre;
+ORDER;DIR;;;ba_title;
+DOC;DIR;FLD_ZOO_CUISINIER;;FLD_ZOO_CUISINIER;
+;;;;;
+//;Father ;Title;Id;Classe;Logical Name
+BEGIN;;Cuisinier;;;ZOO_CUISINIER
+ICON;zoo_cuisinier.png;;;;
+METHOD;Method.zoo_cuisinier.php;;;;
+DFLDID;FLD_ZOO_CUISINIER;;;;
+END;;;;;

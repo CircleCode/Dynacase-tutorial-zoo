@@ -1,0 +1,15 @@
+//;Father ;Title;Id;Classe;Logical Name;;;;;;;;;;;
+BEGIN;;;;;ZOO_CARNETSANTE;;;;;;;;;;;
+//;idattr;idframe;label;T;A;type;ord;vis;need;link;phpfile;phpfunc;elink ;constraint ;option;Commentaires
+;;;;;;;;;;;;;;;;
+ATTR;CA_IDENTIFICATION;;Identification;N;N;frame;100;W;;;;;;;;
+ATTR;CA_NOM;CA_IDENTIFICATION;nom de l'animal;Y;N;text;110;W;;%S%&app=FDL&action=FDL_CARD&latest=Y&id=%CA_IDNOM%;fdl.php;lfamilyvalues(D, ZOO_ANIMAL, CA_NOM , 'INITID',"TITLE"):CA_IDNOM, CA_NOM;%S%app=GENERIC&action=GENERIC_EDIT&id=%CA_IDNOM%&classid=ZOO_ANIMAL&AN_NOM=%CA_NOM%;;;
+ATTR;CA_IDNOM;CA_IDENTIFICATION;identifiant de l'animal;N;N;docid("ZOO_ANIMAL");120;H;;;;::getTitle(ca_idnom):ca_nom;;;;
+ATTR;CA_INTERVENTION;;Intervention;N;N;frame;200;W;;;;;;;;
+ATTR;CA_INTERVENTION_T;CA_INTERVENTION;liste intervention;N;N;array;210;W;;;;;;;;
+ATTR;CA_DATE;CA_INTERVENTION_T;date;N;N;date;220;W;;;;;;;;
+ATTR;CA_DESCRIPTION;CA_INTERVENTION_T;description;N;N;text;230;W;;;;;;;;
+ATTR;CA_IDVETERINAIRE;CA_INTERVENTION_T;id veterinaire;N;N;docid;240;H;;;;::getTitle(ca_idveterinaire):ca_veterinaire;;;;
+ATTR;CA_VETERINAIRE;CA_INTERVENTION_T;veterinaire;N;N;text;250;W;;%S%&app=FDL&action=FDL_CARD&id=%CA_IDVETERINAIRE%;fdl.php;lfamily(D,ZOO_VETERINAIRE,CA_VETERINAIRE):CA_IDVETERINAIRE,CA_VETERINAIRE;%S%&app=FDL&action=IMPCARD&id=%I%&mime=application/msword&zone=ZOO:VIEWORDONNANCE:S&ca_idveterinaire=%CA_IDVETERINAIRE%&ca_idnom=%CA_IDNOM%&ca_description=%CA_DESCRIPTION%&ca_date=%CA_DATE%;;eltitle=éditer une ordonnance|elsymbol=&hearts;
+ATTR;CA_MALADIE;;maladie;N;N;menu;260;W;;%S%&app=FDL&action=IMPCARD&zone=ZOO:MALADIE&id=%I%;;;;;;
+END;;;;;;;;;;;;;;;;

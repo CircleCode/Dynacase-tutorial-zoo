@@ -1,6 +1,9 @@
 <?php
 
-class WAdoption extends WDoc
+/**
+ * @property _ZOO_DEMANDEADOPTION doc
+ */
+class WFL_ZOO_DEMANDEADOPTION extends WDoc
 {
     /* Required: used as a db prefix for generated attributes */
     public $attrPrefix = "WAD";
@@ -83,7 +86,7 @@ class WAdoption extends WDoc
         self::transmited => "zoo_adoption verification"
     ); # _("zoo_adoption writting") # _("zoo_adoption accepted") _("zoo_adoption verification")
 
-    /* @var _ANIMAL $nouvelAnimal */
+    /* @var _ZOO_ANIMAL $nouvelAnimal */
     protected $nouvelAnimal = null;
     
     public function sendTransmitedMail_detail($newstate)

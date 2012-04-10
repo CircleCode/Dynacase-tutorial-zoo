@@ -1,0 +1,16 @@
+//;Father ;Title;Id;Classe;Logical Name;;;;;;;;;;;
+BEGIN;;;;;ZOO_ENTREE;;;;;;;;;;;
+//;idattr;idframe;label;T;A;type;ord;vis;need;link;phpfile;phpfunc;elink ;constraint ;option;Commentaires
+;;;;;;;;;;;;;;;;
+ATTR;ENT_FR_IDENTIFICATION;;Identification;N;N;frame;100;W;;;;;;;;
+ATTR;ENT_IDCAISSIERE;ENT_FR_IDENTIFICATION;idcaissiere;N;N;docid;110;H;;;;::getTitle(ENT_IDCAISSIERE):ENT_CAISSIERE;;;;
+ATTR;ENT_CAISSIERE;ENT_FR_IDENTIFICATION;caissiere;N;N;text;120;W;;%S%app=FDL&action=FDL_CARD&id=%ENT_IDCAISSIERE%;;;;;;
+ATTR;ENT_DATE;ENT_FR_IDENTIFICATION;date;Y;N;date;130;W;;;;;;;;
+ATTR;ENT_NCAISSE;ENT_FR_IDENTIFICATION;N°caisse;N;N;int;140;W;;;;;;;;
+ATTR;ENT_FR_ENTREES;;Entrées;N;N;frame;200;W;;;;;;;;
+ATTR;ENT_ADULTE;ENT_FR_ENTREES;nombre adulte;N;N;int;210;W;;;;;;;;
+ATTR;ENT_ENFANT;ENT_FR_ENTREES;nombre enfant;N;N;int;220;W;;;;;;;;
+ATTR;ENT_PRINTTICKET;;Tickets;N;N;menu;230;W;;%S%app=FDL&action=IMPCARD&zone=ZOO:VIEWTICKETS&id=%I%;;;;;;
+ATTR;ENT_DAYSALES;;Recette;N;N;menu;240;W;;%S%app=ZOO&action=ZOO_TICKETSALES&date=%ENT_DATE%;;::canExecute(ZOO,ZOO_TICKETSALES);;;mwidth=300px|mheight=400px;
+ATTR;ENT_TODAYSALES;;Recette du jour;N;N;menu;250;W;;%S%app=ZOO&action=ZOO_TICKETSALES;;::canExecute(ZOO,ZOO_TICKETSALES);;;mwidth=300px|mheight=400px|global=yes|onlyglobal=yes;
+END;;;;;;;;;;;;;;;;
