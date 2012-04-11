@@ -9,7 +9,6 @@
  * @package dynacase-zoo
  *
  * @global Action $action
- * @global docid Http var : document identificator
  */
 
 
@@ -20,7 +19,6 @@ $usage->setText("View properties of a document");
 $docid = $usage->addOption("docid", "document id", array(), 9);
 $usage->verify();
 
-
 // Check database access
 $dbaccess = $action->dbaccess;
 if ($dbaccess == "") {
@@ -28,9 +26,10 @@ if ($dbaccess == "") {
 }
 
 $doc = new_doc($dbaccess, $docid);
+//$doc = new_doc('', $docid);
 if ($doc->isAlive()) {
     print get_class($doc) . ":" . $doc->getTitle() . "\n";
-    print_r($doc);
+    //print_r($doc);
 } else {
     print sprintf("Document <%s> is not alive\n", $docid);
 }
