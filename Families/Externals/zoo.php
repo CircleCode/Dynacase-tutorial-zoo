@@ -22,29 +22,49 @@ function getOrdre($dbaccess, $classId, $userInput = "")
 
     $result = array();
 
-    $class = new_doc($dbaccess, $classId);
-    if(!$class->isAlive()){
-        return _("zoo:no class");
-    }
-    //get orders for this class only
-    $classScientificName = $class->getValue("CL_NOMSCIENTIFIQUE");
-    if(!array_key_exists($classScientificName, $orders)){
-        return _("zoo:unknown class");
-    }
+    if ($classId) {
+        $class = new_doc($dbaccess, $classId);
+        if ($class->isAlive()) {
+            //get orders for this class only
+            $classScientificName = $class->getValue("CL_NOMSCIENTIFIQUE");
+            $classOrders = $orders[$classScientificName];
 
-    $classOrders = $orders[$classScientificName];
-    foreach ($classOrders as $order) {
-        // only keep orders corresponding tu user input
-        if (($userInput == "")
-            || (preg_match("/$userInput/i", $order))
-        ) {
-            $result[] = array($order, $order);
+            if (is_array($classOrders)) {
+                foreach ($classOrders as $order) {
+                    // only keep orders corresponding tu user input
+                    if (($userInput == "")
+                        || (preg_match("/$userInput/i", $order))
+                    ) {
+                        $result[] = array($order, $order, '', '');
+                    }
+                }
+                return $result;
+            } else {
+                return _("zoo:no class referenced");
+            }
+        } else {
+            return _("zoo:unknown class");
         }
+    } else {
+        foreach ($orders as $classLatinName => $classOrders) {
+            $s = new SearchDoc($dbaccess, 'ZOO_CLASSE');
+            $s->addFilter("cl_nomscientifique = '%s'", $classLatinName);
+            $s->setSlice(1);
+            $t = $s->search();
+            $classId = $t[0]['initid'];
+            $classTitle = $t[0]['title'];
+            foreach ($classOrders as $order) {
+                // only keep orders corresponding tu user input
+                if (($userInput == "")
+                    || (preg_match("/$userInput/i", $order))
+                ) {
+                    $result[] = array("[$classTitle] $order", $order, $classId, $classTitle);
+                }
+            }
+        }
+        return $result;
     }
-
-    return $result;
 }
-
 function zoo_searchspecies(&$action,$dbaccess,$id,$nom) {
    // print "DB=$dbaccess, NOM=$nom ID=$id";
     $action->lay->set("enclosname",$nom);
