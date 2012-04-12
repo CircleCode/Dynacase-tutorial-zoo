@@ -23,10 +23,16 @@ function getOrdre($dbaccess, $classId, $userInput = "")
     $result = array();
 
     $class = new_doc($dbaccess, $classId);
+    if(!$class->isAlive()){
+        return _("zoo:no class");
+    }
     //get orders for this class only
     $classScientificName = $class->getValue("CL_NOMSCIENTIFIQUE");
-    $classOrders = $orders[$classScientificName];
+    if(!array_key_exists($classScientificName, $orders)){
+        return _("zoo:unknown class");
+    }
 
+    $classOrders = $orders[$classScientificName];
     foreach ($classOrders as $order) {
         // only keep orders corresponding tu user input
         if (($userInput == "")
