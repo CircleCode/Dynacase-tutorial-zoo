@@ -56,4 +56,54 @@ function zoo_searchspecies(&$action,$dbaccess,$id,$nom) {
         $action->lay->set("CAPACITY",_("zoo;Capacity not set"));
     }
 }
+
+
+/**
+ * return address of a person
+ *
+ * @param string $userInput optionnal filter to select personn
+ *
+ * @return string[][]|string
+ */
+function getAddress($userInput = "")
+{
+
+    $s = new SearchDoc('', "USER");
+
+    if ($userInput != "") { // add optionnal filter on title
+        $s->addFilter("title ~* '%s'", $userInput);
+    }
+    $s->setSlice(100); // limit nb results
+    $s->setObjectReturn(); // we want objects
+
+    $s->search();
+
+    $result = array();
+
+    foreach ($s->getDocumentList() as $user) {
+        /* @var _USER $user */
+
+        $displayTitle = sprintf("%s (%s)",
+            $user->getTitle(),
+            $user->getValue("us_society")
+        );
+        $mobile = $user->getValue("us_mobile");
+        $phone = $user->getValue("us_phone");
+        $postalAddress = sprintf("%s\n%s %s",
+            $user->getValue("us_workaddr"),
+            $user->getValue("us_workpostalcode"),
+            $user->getValue("us_worktown"));
+
+        // add this result
+        $result[] = array(
+            $displayTitle,
+            $user->getProperty('initid'),
+            $user->getTitle(),
+            $postalAddress,
+            $phone,
+            $mobile
+        );
+    }
+    return $result;
+}
 ?>
