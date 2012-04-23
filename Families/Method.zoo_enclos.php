@@ -21,7 +21,6 @@ Class _ENCLOS extends Doc
       */
     public $defaultview = "ZOO:VIEWENCLOS";
 
-
     public function specRefresh()
     {
         $msg = parent::SpecRefresh();
@@ -46,6 +45,15 @@ Class _ENCLOS extends Doc
             );
         }
         return $err;
+    }
+
+    /**
+     * return count of animals
+     * @return int
+     */
+    public function getNbAnimaux()
+    {
+        return count($this->getTValue("en_animaux"));
     }
 
     /**
