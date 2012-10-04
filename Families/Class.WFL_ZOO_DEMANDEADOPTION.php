@@ -8,20 +8,29 @@ class WFL_ZOO_DEMANDEADOPTION extends WDoc
     /* Required: used as a db prefix for generated attributes */
     public $attrPrefix = "WAD";
 
-    /* states */
-    const initialised = "zoo_initialised"; # _("zoo_initialised")
-    const transmited = "zoo_transmited"; # _("zoo_transmited")
-    const accepted = "zoo_accepted"; # _("zoo_accepted")
-    const refused = "zoo_refused"; # _("zoo_refused")
-    const realised = "zoo_realised"; # _("zoo_realised")
+    //region States
+    const initialised = "zoo_wad_e1"; // /* _ initialised */ _("zoo_wad_e1")
+    const transmited = "zoo_wad_e2"; // /* _ transmited */ _("zoo_wad_e2")
+    const accepted = "zoo_wad_e3"; // /* _ accepted */ _("zoo_wad_e3")
+    const refused = "zoo_wad_e4"; // /* _ refused */ _("zoo_wad_e4")
+    const realised = "zoo_wad_e5"; // /* _ realised */ _("zoo_wad_e5")
+    //endregion
 
-    /* transitions */
-    const Ttransmited = "zoo_Ttransmited"; # _("zoo_Ttransmited")
-    const Taccepted = "zoo_Taccepted"; # _("zoo_Taccepted")
-    const Trefused = "zoo_Trefused"; # _("zoo_Trefused")
-    const Tretry = "zoo_Tretry"; # _("zoo_Tretry")
-    const Trealised = "zoo_Trealised"; # _("zoo_Trealised")
-    
+    //region Transitions
+    const Ttransmited = "zoo_wad_t1"; // /* _ Ttransmited */ _("zoo_wad_t1")
+    const Taccepted = "zoo_wad_t2"; // /* _ Taccepted */ _("zoo_wad_t2")
+    const Trefused = "zoo_wad_t3"; // /* _ Trefused */ _("zoo_wad_t3")
+    const Tretry = "zoo_wad_t4"; // /* _ Tretry */ _("zoo_wad_t4")
+    const Trealised = "zoo_wad_t5"; // /* _ Trealised */ _("zoo_wad_t5")
+    //endregion
+
+    //region Activities
+    public $stateactivity = array(
+        self::initialised => "zoo_adoption writting", // _("zoo_adoption writting")
+        self::accepted    => "zoo_adoption accepted", // _("zoo_adoption accepted")
+        self::transmited  => "zoo_adoption verification" // _("zoo_adoption verification")
+    );
+    //endregion
 
     public $firstState = self::initialised;
 
@@ -79,12 +88,6 @@ class WFL_ZOO_DEMANDEADOPTION extends WDoc
             "t" => self::Tretry
         )
     );
-    
-    public $stateactivity = array(
-        self::initialised => "zoo_adoption writting",
-        self::accepted => "zoo_adoption accepted",
-        self::transmited => "zoo_adoption verification"
-    ); # _("zoo_adoption writting") # _("zoo_adoption accepted") _("zoo_adoption verification")
 
     /* @var _ZOO_ANIMAL $nouvelAnimal */
     protected $nouvelAnimal = null;

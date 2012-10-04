@@ -3,7 +3,7 @@
 /**
  * return order compatible with class
  *
- * @param strinf $dbaccess
+ * @param string $dbaccess
  * @param string $classId identifiant of  classes
  * @param string $userInput optionnal filter to select order
  *

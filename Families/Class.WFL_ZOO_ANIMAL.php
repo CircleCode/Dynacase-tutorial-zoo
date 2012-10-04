@@ -7,16 +7,20 @@ class WFL_ZOO_ANIMAL extends WDoc
 {
     var $attrPrefix = "WAN";
 
-    const alive = "e1"; # N_("alive")
-    const dead = "dead"; # N_("dead")
-    const transfered = "transfered"; # N_("transfered")
-    const sick = "sick"; # N_("sick")
-    const convalescent = "convalescent"; # N_("convalescent")
+    //region States
+    const alive = "zoo_wan_e1"; // /* _ alive */ N_("zoo_wan_e1")
+    const dead = "zoo_wan_e2"; // /* _ dead */ N_("zoo_wan_e2")
+    const transfered = "zoo_wan_e3"; // /* _ transfered */ N_("zoo_wan_e3")
+    const sick = "zoo_wan_e4"; // /* _ sick */ N_("zoo_wan_e4")
+    const convalescent = "zoo_wan_e5"; // /* _ convalescent */ N_("zoo_wan_e5")
+    //endregion
 
-    const T1 = "T1"; # N_("T1")
-    const Tsick = "Tsick"; # N_("Tsick")
-    const Tconvalescent = "Tconvalescent"; # N_("Tconvalescent")
-    const T3 = "T3"; # N_("T3")
+    //region Transitions
+    const T1 = "zoo_wan_t1"; // /* _ T1 */ N_("zoo_wan_t1")
+    const Tsick = "zoo_wan_t2"; // /* _ Tsick */ N_("zoo_wan_t2")
+    const Tconvalescent = "zoo_wan_t3"; // /* _ Tconvalescent */ N_("zoo_wan_t3")
+    const T3 = "zoo_wan_t4"; // /* _ T3 */ N_("zoo_wan_t4")
+    //endregion
 
     var $firstState = self::alive;
 
