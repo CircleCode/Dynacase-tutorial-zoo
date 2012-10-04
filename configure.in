@@ -1,6 +1,6 @@
-#   Autoconf script 
+#   Autoconf script
 #
-#   
+#
 #   This program is free software; you can redistribute it and/or
 #   modify it under the terms of the GNU General Public License
 #   as published by the Free Software Foundation; either version
@@ -20,28 +20,21 @@ AC_SUBST(PACKAGE)
 PACKAGE=dynacase-zoo
 AC_SUBST(APPNAME)
 APPNAME=ZOO
-
-ac_default_prefix=/usr/share/what
+ac_default_prefix=/var/www/dynacase/
 AC_SUBST(PUBRULE)
 PUBRULE=
 AC_ARG_WITH(pubrule, [  --with-pubrule=dir	Path to PubRule], PUBRULE=$withval)
-if test "x$PUBRULE" != "x"; then
-  PUBRULEDIR=$PUBRULE
+if test -z ${PUBRULE}; then
+    PUBRULE=`pwd`
+fi
+if test -f $PUBRULE/PubRule; then
+    AC_MSG_NOTICE([PubRule located at $PUBRULE])
 else
-  if test "x$PUBRULEDIR" == "x"; then
-     AC_CHECK_FILE($HOME/anakeen/devtools/PubRule, PUBRULEDIR=$HOME/anakeen/devtools/)
-     if test "x$PUBRULEDIR" = "x"; then
-          PUBRULEDIR=`pwd`
-     fi
-  fi
+    AC_MSG_ERROR([Could not find PubRule])
 fi
-AC_CHECK_FILE($PUBRULEDIR/PubRule, PUBRULE=$PUBRULEDIR)
-if test "x$PUBRULE" = "x"; then
-  AC_MSG_ERROR([Could not find PubRule])
-fi
-AC_MSG_NOTICE([PubRule located at $PUBRULE])
 
+for file in `find . \( -name '*.in' -a -not -name configure.in \) -print`; do
+    AC_CONFIG_FILES(${file%.in})
+done
 
-
-#AC_OUTPUT(Makefile GEARS_init.php freedom-gears.spec debian/changelog info.xml)
-AC_OUTPUT(Makefile info.xml ZOO_init.php )
+AC_OUTPUT

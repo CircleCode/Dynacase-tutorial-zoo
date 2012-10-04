@@ -7,23 +7,18 @@ utildir=@PUBRULE@
 pubdir = @prefix@
 srcdir = @srcdir@
 applib = FDL
-rootprefix=$(RPM_BUILD_ROOT)
 appname = @APPNAME@
-export pubdir utildir appname applib
 TAR = tar
 GZIP_ENV = --best
 
-export targetdir PACKAGE
+export pubdir utildir appname applib targetdir PACKAGE
 
 SUBDIR= Families Actions Scripts Images
 
 include $(utildir)/PubRule
 
-TRANSODS = Families/zoo-families.ods
-DISTFILES += $(SUBDIR)  $(wildcard *.ods)\
-            $(wildcard *.in) \
-            VERSION RELEASE  \
-	    $(PACKAGE)_en.po $(PACKAGE)_fr.po 
+TRANSCSV += $(shell find ./Families -name "PARAM_*.csv")
+TRANSCSV += $(shell find ./Families -name "STRUCT_*.csv")
 
 clean:
 	/bin/rm -f *.*~ config.* Makefile configure $(appname)_init.php info.xml $(PACKAGE)-*webinst
